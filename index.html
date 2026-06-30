@@ -3,438 +3,391 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tigerhawk — Casey's Not Yet Purchased | Big Grove Brewery</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f5f7;color:#1a1a1a;min-height:100vh}
-header{background:#fff;border-bottom:2px solid #e5e7eb;padding:10px 28px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-header h1{font-size:15px;font-weight:600;color:#111;letter-spacing:-.2px}
-.header-sub{font-size:11px;color:#dc2626;font-weight:600;background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:3px 8px}
-header .period{margin-left:auto;font-size:12px;color:#888;white-space:nowrap}
-.container{max-width:1400px;margin:0 auto;padding:20px 28px}
+<title>Tigerhawk — Casey's Gap Report</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f5f7;color:#1a1a2e;min-height:100vh;font-size:13px}
+
+header{background:#fff;border-bottom:1px solid #e3e6ed;padding:0 28px;height:56px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:200;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+header h1{font-size:15px;font-weight:700;color:#0d1b3e;letter-spacing:-.3px}
+.hd{width:1px;height:20px;background:#e3e6ed}
+.hsub{font-size:12px;color:#9aa4b8}
+.hmeta{margin-left:auto;font-size:12px;color:#9aa4b8;white-space:nowrap}
+
+.wrap{max-width:1320px;margin:0 auto;padding:24px 28px}
+
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.kpi{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.kpi .label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.kpi .value{font-size:24px;font-weight:700;color:#111;line-height:1}
-.kpi .sub{font-size:11px;color:#aaa;margin-top:4px}
-.kpi.red .value{color:#dc2626}.kpi.blue .value{color:#1D6FA4}.kpi.amber .value{color:#d97706}
-.filter-section{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 18px;margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.filter-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:18px}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.card h3{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:14px;font-weight:600}
-.dist-bar{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:11px;cursor:pointer;border-radius:5px;padding:2px 4px 2px 0;transition:background .12s}
-.dist-bar:hover{background:#f3f4f6}
-.dist-bar.dist-active{background:#fef2f2}
-.dist-bar.dist-active .dist-name{color:#dc2626;font-weight:700}
-.dist-name{width:190px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right;flex-shrink:0;font-size:11px}
-.dist-track{flex:1;height:14px;background:#f3f4f6;border-radius:3px;overflow:hidden}
-.dist-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:6px}
-.dist-fill span{font-size:10px;font-weight:600;color:#fff;white-space:nowrap}
-.stats-panel{display:flex;flex-direction:column;gap:4px}
-.stat-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f3f4f6;font-size:12px}
-.stat-row:last-child{border-bottom:none}
-.stat-label{color:#666}.stat-val{font-weight:700;color:#111;max-width:200px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.table-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.table-controls{padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0f0f0;background:#fafafa;flex-wrap:wrap}
-.search-wrap{position:relative;flex:1;min-width:180px}
-.search-wrap input{width:100%;background:#fff;border:1px solid #d1d5db;border-radius:7px;padding:7px 12px 7px 32px;color:#111;font-size:13px;outline:none}
-.search-wrap input:focus{border-color:#6b7280}
-.search-wrap svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#aaa;pointer-events:none}
-.count-badge{font-size:11px;color:#888;white-space:nowrap}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{padding:9px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#aaa;border-bottom:1px solid #f0f0f0;cursor:pointer;user-select:none;white-space:nowrap;background:#fafafa}
-th:hover{color:#555}
-th .sa{display:inline-block;margin-left:3px;opacity:.4}
-th.sorted .sa{opacity:1;color:#1a1a1a}
-td{padding:8px 12px;border-bottom:1px solid #f5f5f5;vertical-align:middle}
-tr:hover td{background:#fef9f9}
-.acct-nm{font-weight:600;color:#111}
+.kpi{background:#fff;border:1px solid #e3e6ed;border-radius:10px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.kpi .label{font-size:10px;color:#9aa4b8;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:700}
+.kpi .value{font-size:28px;font-weight:800;color:#0d1b3e;line-height:1;letter-spacing:-.5px}
+.kpi .sub{font-size:11px;color:#b0bac8;margin-top:5px}
+.kpi.gap .value{color:#b42318}
+.kpi.ok .value{color:#1565a8}
+
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:20px}
+.card{background:#fff;border:1px solid #e3e6ed;border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card h3{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#9aa4b8;margin-bottom:14px;font-weight:700}
+
+.dist-bar{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:12px;cursor:pointer;border-radius:6px;padding:2px 4px 2px 0}
+.dist-bar:hover{background:#f5f7fb}
+.dist-bar.active{background:#fdeeec}
+.dist-bar.active .dist-name{color:#b42318;font-weight:700}
+.dist-name{width:170px;color:#4a5568;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right;flex-shrink:0}
+.dist-track{flex:1;height:16px;background:#edf0f7;border-radius:4px;overflow:hidden;display:flex}
+.dist-seg-gap{height:100%;background:#b42318}
+.dist-seg-ok{height:100%;background:#dde6f3}
+.dist-count{font-size:11px;font-weight:700;color:#0d1b3e;min-width:62px;text-align:right}
+.dist-count .gapn{color:#b42318}
+
+.donut-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:18px}
+.donut-svg{width:140px;height:140px}
+.donut-legend{display:flex;flex-direction:column;gap:10px;width:100%}
+.dl-row{display:flex;align-items:center;gap:8px;font-size:12px}
+.dl-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.dl-label{color:#4a5568;flex:1}
+.dl-val{color:#0d1b3e;font-weight:700}
+
+.filter-bar{background:#fff;border:1px solid #e3e6ed;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.sw{position:relative;flex:1;min-width:200px}
+.sw input{width:100%;background:#f4f5f7;border:1.5px solid #e3e6ed;border-radius:7px;padding:7px 12px 7px 32px;font-size:13px;color:#1a1f2e;outline:none}
+.sw input:focus{border-color:#1565a8;background:#fff}
+.sw svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#b0bac8;pointer-events:none}
+select.fsel{background:#f4f5f7;border:1.5px solid #e3e6ed;border-radius:7px;padding:6px 10px;font-size:12px;color:#4a5568;cursor:pointer;outline:none}
+select.fsel:focus{border-color:#1565a8}
+.pill-toggle{display:flex;border:1.5px solid #e3e6ed;border-radius:8px;overflow:hidden}
+.pill-toggle button{padding:6px 14px;background:#fff;border:none;color:#6b7a99;font-size:12px;cursor:pointer;font-weight:600;border-right:1px solid #e3e6ed}
+.pill-toggle button:last-child{border-right:none}
+.pill-toggle button.active{background:#b42318;color:#fff}
+.pill-toggle button.active.allbtn{background:#1565a8}
+.cbadge{font-size:12px;color:#b0bac8;margin-left:auto;white-space:nowrap}
+
+.tcard{background:#fff;border:1px solid #e3e6ed;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.tscroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead tr{background:#fafbfc}
+th{padding:9px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:700;color:#9aa4b8;border-bottom:1.5px solid #edf0f5;white-space:nowrap;cursor:pointer;user-select:none}
+th:hover{color:#1565a8}
+th.sorted{color:#1565a8}
+th .sa{margin-left:3px;opacity:.5;font-size:11px}
+th.sorted .sa{opacity:1}
+td{padding:9px 14px;border-bottom:1px solid #f0f2f6;vertical-align:middle;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#f6f8fd}
+tr.gap-row td:first-child{border-left:3px solid #b42318}
+tr.ok-row td:first-child{border-left:3px solid transparent}
+
+.acct-name{font-weight:700;color:#0d1b3e;font-size:13px}
+.acct-cell{position:relative;cursor:default}
+
+/* TOOLTIP */
+#tt{position:fixed;z-index:9999;pointer-events:none;opacity:0;transition:opacity .12s;width:230px}
+#tt.show{opacity:1}
+.tt-inner{background:#fff;border:1px solid #dde3ef;border-radius:10px;box-shadow:0 8px 28px rgba(13,27,62,.13),0 2px 6px rgba(13,27,62,.07);overflow:hidden}
+.tt-header{background:#fafbfc;border-bottom:1px solid #edf0f5;padding:10px 13px 8px}
+.tt-title{font-size:12px;font-weight:700;color:#0d1b3e;margin-bottom:1px}
+.tt-sub{font-size:10px;color:#9aa4b8}
+.tt-body{padding:10px 13px;display:flex;flex-direction:column;gap:7px}
+.tt-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px}
+.tt-key{color:#9aa4b8}
+.tt-val{color:#0d1b3e;font-weight:700;text-align:right}
+.tt-rep{color:#1565a8}
 .addr-sm{font-size:10px;color:#aaa;margin-top:1px}
-.dist-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;color:#fff}
-.state-badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:10px;background:#f3f4f6;color:#6b7280;font-weight:500}
-.not-tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
-.ce-num{font-size:12px;font-weight:600;color:#d97706}
-.prox-mi{font-size:10px;color:#9ca3af;margin-left:4px}
-em.hl{font-style:normal;background:#fef08a;color:#111;border-radius:2px;padding:0 1px}
-.pagination{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid #f0f0f0;background:#fafafa}
-.pagination .info{font-size:11px;color:#aaa}
-.page-btns{display:flex;gap:4px}
-.page-btn{background:#fff;border:1px solid #d1d5db;color:#555;font-size:11px;padding:3px 9px;border-radius:5px;cursor:pointer}
-.page-btn:hover{color:#111;border-color:#9ca3af}
-.page-btn.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a;font-weight:600}
-.page-btn:disabled{opacity:.3;cursor:default}
-.ss-wrap{position:relative;display:inline-block}
-.ss-input{background:#fff;border:1px solid #d1d5db;color:#555;border-radius:7px;padding:5px 28px 5px 10px;font-size:12px;cursor:pointer;width:100%;outline:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:180px}
-.ss-arrow{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:10px;color:#9ca3af;pointer-events:none}
-.ss-dropdown{position:absolute;top:calc(100% + 3px);left:0;min-width:100%;max-width:300px;background:#fff;border:1px solid #d1d5db;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:500;display:none;flex-direction:column}
-.ss-search{border:none;border-bottom:1px solid #e5e7eb;padding:7px 10px;font-size:12px;outline:none;border-radius:8px 8px 0 0;width:100%}
-.ss-list{overflow-y:auto;max-height:240px;padding:4px 0}
-.ss-opt{padding:6px 10px;font-size:12px;cursor:pointer;color:#333}
-.ss-opt:hover{background:#f3f4f6}
-.ss-opt.selected{color:#dc2626;font-weight:600;background:#fef2f2}
-.pill-btn{padding:5px 12px;border-radius:20px;border:1px solid #d1d5db;background:#fff;color:#555;font-size:12px;cursor:pointer}
-.pill-btn:hover{border-color:#9ca3af;color:#111}
-@media(max-width:768px){
-  .charts-row,.kpi-row{display:none}
-  .container{padding:10px 12px}
-  header{padding:8px 14px;flex-wrap:wrap;gap:6px}
-  .filter-section{padding:10px 12px}
-  table thead{display:none}
-  td{display:block;padding:0}
-  tr{display:block;border-bottom:1px solid #e5e7eb;padding:10px 12px;border-left:3px solid #dc2626}
-  tr:hover td{background:transparent}
-  .mob-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-  .mob-name{font-size:13px;font-weight:600;color:#111}
-  .mob-sub{font-size:11px;color:#888;margin-top:2px}
-  .mob-tag{font-size:9px;font-weight:800;color:#dc2626;background:#fef2f2;border:1px solid #fecaca;border-radius:5px;padding:3px 6px;white-space:nowrap;text-align:center;line-height:1.4}
-}</style>
+.dist-chip{font-size:11px;color:#6b7a99;max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.status-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:9px;font-size:10px;font-weight:800;letter-spacing:.2px}
+.status-gap{background:#fdeeec;color:#b42318}
+.status-ok{background:#e8f4ff;color:#0d1b3e}
+.status-dot{width:6px;height:6px;border-radius:50%}
+.ce-num{font-size:13px;font-weight:700;color:#1565a8}
+.ce-zero{color:#d0d7e6;font-weight:600}
+.purch-num{font-size:12px;font-weight:600;color:#4a5568}
+.fb-date{font-size:11px;color:#9aa4b8}
+em.hl{font-style:normal;background:#d6e4ff;border-radius:2px;padding:0 1px;color:#0d1b3e}
+
+.pag{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid #edf0f5;background:#fafbfc}
+.pag-info{font-size:11px;color:#b0bac8}
+.pag-btns{display:flex;gap:4px}
+.pb{background:#fff;border:1.5px solid #e3e6ed;color:#6b7a99;font-size:11px;padding:3px 9px;border-radius:5px;cursor:pointer;font-weight:500}
+.pb:hover{border-color:#1565a8;color:#1565a8}
+.pb.active{background:#1565a8;color:#fff;border-color:#1565a8;font-weight:700}
+.pb:disabled{opacity:.3;cursor:default;pointer-events:none}
+</style>
 </head>
 <body>
+
 <header>
-  <div>
-    <h1>Tigerhawk — Casey's Not Yet Purchased</h1>
-  </div>
-  <span class="header-sub">0 sales &nbsp;&#183;&nbsp; 90-day window</span>
-  <span class="period">Data as of 5/29/2026 &nbsp;&#183;&nbsp; Iowa</span>
+  <h1>Tigerhawk — Casey's Gap Report</h1>
+  <div class="hd"></div>
+  <span class="hsub">Authorized Account Coverage</span>
+  <span class="hmeta" id="hmeta">Loading…</span>
 </header>
 
-<div class="container">
+<div class="wrap">
   <div class="kpi-row">
-    <div class="kpi red"><div class="label">Not Yet Purchased</div><div class="value" id="kAccts">—</div><div class="sub">Casey's locations</div></div>
-    <div class="kpi blue"><div class="label">Distributors</div><div class="value" id="kDists">—</div><div class="sub">responsible territories</div></div>
-    <div class="kpi"><div class="label">Most Opportunity</div><div class="value" id="kTopDist" style="font-size:14px;padding-top:4px">—</div><div class="sub" id="kTopDistSub"></div></div>
-    <div class="kpi amber"><div class="label">Combined 12M CE</div><div class="value" id="kCE">—</div><div class="sub">vol at these accounts</div></div>
-  </div>
-
-  <div class="filter-section">
-    <div class="filter-row">
-      <div class="ss-wrap">
-        <input class="ss-input" id="ssDist" readonly value="All distributors" onclick="toggleDrop('distDrop')">
-        <span class="ss-arrow">&#9662;</span>
-        <div class="ss-dropdown" id="distDrop">
-          <input class="ss-search" placeholder="Search distributors…" oninput="filterDistList(this.value)">
-          <div class="ss-list" id="distList"></div>
-        </div>
-      </div>
-      <div class="ss-wrap">
-        <input class="ss-input" id="ssSort" readonly value="Sort: Store # A&#8594;Z" onclick="toggleDrop('sortDrop')">
-        <span class="ss-arrow">&#9662;</span>
-        <div class="ss-dropdown" id="sortDrop">
-          <div class="ss-list" id="sortList"></div>
-        </div>
-      </div>
-      <button class="pill-btn" onclick="resetAll()">Reset</button>
-    </div>
+    <div class="kpi"><div class="label">Authorized Accounts</div><div class="value" id="kTotal">—</div><div class="sub">Casey's locations on file</div></div>
+    <div class="kpi gap"><div class="label">Gap Accounts</div><div class="value" id="kGap">—</div><div class="sub" id="kGapPct">—</div></div>
+    <div class="kpi ok"><div class="label">Active Accounts</div><div class="value" id="kOk">—</div><div class="sub" id="kOkPct">—</div></div>
+    <div class="kpi"><div class="label">Combined 2M CE</div><div class="value" id="kCE">—</div><div class="sub">May 1 – Jun 29, 2026</div></div>
   </div>
 
   <div class="charts-row">
     <div class="card">
-      <h3>Not Yet Purchased by Distributor <span style="font-weight:400;color:#bbb;font-size:10px">(click to filter)</span></h3>
+      <h3>Gap Accounts by Distributor <span style="font-weight:400;color:#bbb;font-size:10px">(click to filter)</span></h3>
       <div id="distBars"></div>
     </div>
     <div class="card">
-      <h3>Summary</h3>
-      <div class="stats-panel" id="statsPanel"></div>
+      <h3>Coverage Status</h3>
+      <div class="donut-wrap">
+        <svg class="donut-svg" viewBox="0 0 100 100" id="donutSvg"></svg>
+        <div class="donut-legend" id="donutLegend"></div>
+      </div>
     </div>
   </div>
 
-  <div class="table-card">
-    <div class="table-controls">
-      <div class="search-wrap">
-        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M17 17l-3.5-3.5"/></svg>
-        <input type="text" id="searchBox" placeholder="Search store #, city, address…" oninput="setSearch(this.value)">
-      </div>
-      <span class="count-badge" id="countBadge"></span>
+  <div class="filter-bar">
+    <div class="sw">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="q" type="text" placeholder="Search store #, city, address…" oninput="applyFilters()">
     </div>
-    <table id="mainTable">
-      <thead><tr>
-        <th onclick="setSort('name')">Store <span class="sa">&#8597;</span></th>
-        <th onclick="setSort('city')">City <span class="sa">&#8597;</span></th>
-        <th onclick="setSort('dist')">Distributor <span class="sa">&#8597;</span></th>
-        <th>90-Day Sales</th>
-        <th onclick="setSort('ce12')">12M CE Vol <span class="sa">&#8597;</span></th>
-      </tr></thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-    <div class="pagination">
-      <span class="info" id="pageInfo"></span>
-      <div class="page-btns" id="pageBtns"></div>
+    <div class="pill-toggle" id="statusToggle">
+      <button class="active allbtn" data-v="" onclick="setStatus('',this)">All</button>
+      <button data-v="gap" onclick="setStatus('gap',this)">Gaps Only</button>
+      <button data-v="ok" onclick="setStatus('ok',this)" style="background:#fff;color:#1565a8">Active Only</button>
+    </div>
+    <select class="fsel" id="distSel" onchange="applyFilters()"><option value="">All distributors</option></select>
+    <span class="cbadge" id="cbadge"></span>
+  </div>
+
+  <div class="tcard">
+    <div class="tscroll">
+      <table>
+        <thead><tr>
+          <th onclick="setSort('a')" id="th-a">Store <span class="sa">↕</span></th>
+          <th onclick="setSort('c')" id="th-c">City <span class="sa">↕</span></th>
+          <th onclick="setSort('d')" id="th-d">Distributor <span class="sa">↕</span></th>
+          <th onclick="setSort('g')" id="th-g" class="sorted">Status <span class="sa">↓</span></th>
+          <th onclick="setSort('ce')" id="th-ce">2M CE <span class="sa">↕</span></th>
+          <th onclick="setSort('p')" id="th-p">Purchases <span class="sa">↕</span></th>
+          <th onclick="setSort('fb')" id="th-fb">First Buy <span class="sa">↕</span></th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="pag">
+      <div class="pag-info" id="paginfo"></div>
+      <div class="pag-btns" id="pagbtns"></div>
     </div>
   </div>
 </div>
 
+<!-- TOOLTIP -->
+<div id="tt">
+  <div class="tt-inner">
+    <div class="tt-header">
+      <div class="tt-title" id="tt-title"></div>
+      <div class="tt-sub" id="tt-sub"></div>
+    </div>
+    <div class="tt-body" id="tt-body"></div>
+  </div>
+</div>
+
 <script>
+const ROWS=[{"d":4,"a":"CASEYS #1002","addr":"504 16Th St N","c":"GRAND JUNCTION","s":"IA","st":"1002","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Mortensen"},{"d":4,"a":"CASEYS #1029","addr":"1207 State St","c":"TAMA","s":"IA","st":"1029","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Upah"},{"d":4,"a":"CASEYS #1303","addr":"111 N 3Rd Ave","c":"MARSHALLTOWN","s":"IA","st":"1303","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":"Walker"},{"d":4,"a":"CASEYS #1414","addr":"911 3Rd Ave Sw","c":"STATE CENTER","s":"IA","st":"1414","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Walker"},{"d":4,"a":"CASEYS #1441","addr":"1402 S 12Th Ave","c":"MARSHALLTOWN","s":"IA","st":"1441","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Walker"},{"d":4,"a":"CASEYS #1493","addr":"700 Debra Dr","c":"VAN METER","s":"IA","st":"1493","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Karas"},{"d":4,"a":"CASEYS #1548","addr":"2905 W 1St St","c":"ANKENY","s":"IA","st":"1548","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #1610","addr":"203 S Lincoln St","c":"KNOXVILLE","s":"IA","st":"1610","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Vaughn"},{"d":4,"a":"CASEYS #1617","addr":"508 N Elm St","c":"JEFFERSON","s":"IA","st":"1617","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Gunson"},{"d":4,"a":"CASEYS #1680","addr":"816 Greene St","c":"ADEL","s":"IA","st":"1680","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Blank"},{"d":4,"a":"CASEYS #1682","addr":"1310 A Ave W","c":"OSKALOOSA","s":"IA","st":"1682","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Savage"},{"d":4,"a":"CASEYS #1706","addr":"1021 N 1St St","c":"WINTERSET","s":"IA","st":"1706","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Karas"},{"d":4,"a":"CASEYS #1827","addr":"1007 N Lincoln St","c":"KNOXVILLE","s":"IA","st":"1827","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Vaughn"},{"d":4,"a":"CASEYS #1861","addr":"1455 Grant St S","c":"BONDURANT","s":"IA","st":"1861","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Sheets"},{"d":4,"a":"CASEYS #1892","addr":"702 E Gilman St","c":"SHEFFIELD","s":"IA","st":"1892","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Rasmuson"},{"d":4,"a":"CASEYS #1901","addr":"2541 Nw 66Th Ave","c":"DES MOINES","s":"IA","st":"1901","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #1908","addr":"507 S Jefferson Way","c":"INDIANOLA","s":"IA","st":"1908","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Hieb"},{"d":4,"a":"CASEYS #1910","addr":"6110 Merle Hay Rd","c":"JOHNSTON","s":"IA","st":"1910","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Schaffer"},{"d":4,"a":"CASEYS #1911","addr":"1018 1St Ave E","c":"NEWTON","s":"IA","st":"1911","ce":14.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Grandgenett"},{"d":4,"a":"CASEYS #1938","addr":"3348 8Th St Sw","c":"ALTOONA","s":"IA","st":"1938","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #1941","addr":"1010 Se Oralabor Rd","c":"ANKENY","s":"IA","st":"1941","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2","addr":"114 Mamie Eisenhower Ave","c":"BOONE","s":"IA","st":"2","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Gunson"},{"d":4,"a":"CASEYS #2097","addr":"1006 W 2Nd Ave","c":"INDIANOLA","s":"IA","st":"2097","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Hieb"},{"d":4,"a":"CASEYS #2164","addr":"3505 N Ankeny Blvd","c":"ANKENY","s":"IA","st":"2164","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2177","addr":"309 Center Ave S","c":"MITCHELLVILLE","s":"IA","st":"2177","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Linsley"},{"d":4,"a":"CASEYS #2179","addr":"1955 Se University Ave","c":"WAUKEE","s":"IA","st":"2179","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Sheets"},{"d":4,"a":"CASEYS #2237","addr":"1002 W 2Nd St","c":"PRAIRIE CITY","s":"IA","st":"2237","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Linsley"},{"d":4,"a":"CASEYS #2253","addr":"2070 Nw 100Th St","c":"CLIVE","s":"IA","st":"2253","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2272","addr":"1203 N Walnut St","c":"COLFAX","s":"IA","st":"2272","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Linsley"},{"d":4,"a":"CASEYS #2297","addr":"108 8Th St","c":"WEST DES MOINES","s":"IA","st":"2297","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #2301","addr":"17005 Us Hwy 69","c":"GILBERT","s":"IA","st":"2301","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Little"},{"d":4,"a":"CASEYS #2304","addr":"200 6Th Ave","c":"SLATER","s":"IA","st":"2304","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Little"},{"d":4,"a":"CASEYS #2314","addr":"3527 Indianola Ave","c":"DES MOINES","s":"IA","st":"2314","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2392","addr":"5340 Nw Beaver Dr","c":"JOHNSTON","s":"IA","st":"2392","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #24","addr":"1127 Story St","c":"BOONE","s":"IA","st":"24","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Gunson"},{"d":4,"a":"CASEYS #2417","addr":"1200 W 18Th St S","c":"NEWTON","s":"IA","st":"2417","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Grandgenett"},{"d":4,"a":"CASEYS #2474","addr":"104 N Us Hwy 69","c":"HUXLEY","s":"IA","st":"2474","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Little"},{"d":4,"a":"CASEYS #2478","addr":"205 S Main St","c":"NEW SHARON","s":"IA","st":"2478","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Savage"},{"d":4,"a":"CASEYS #2488","addr":"504 S Main St","c":"NORTH ENGLISH","s":"IA","st":"2488","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Moon"},{"d":4,"a":"CASEYS #2490","addr":"1625 Broad St","c":"STORY CITY","s":"IA","st":"2490","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Little"},{"d":4,"a":"CASEYS #2494","addr":"200 S Commercial Ave","c":"EAGLE GROVE","s":"IA","st":"2494","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Rasmuson"},{"d":4,"a":"CASEYS #2521","addr":"110 5Th St","c":"ADAIR","s":"IA","st":"2521","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Blank"},{"d":4,"a":"CASEYS #2528","addr":"602 Highland St S","c":"WILLIAMSBURG","s":"IA","st":"2528","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Moon"},{"d":4,"a":"CASEYS #2533","addr":"2157 Hwy 6 Trl","c":"MARENGO","s":"IA","st":"2533","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":"Moon"},{"d":4,"a":"CASEYS #2538","addr":"20 W Hickman Rd","c":"WAUKEE","s":"IA","st":"2538","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":"Schaffer"},{"d":4,"a":"CASEYS #2543","addr":"201 S Main St","c":"ALBION","s":"IA","st":"2543","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Walker"},{"d":4,"a":"CASEYS #2551","addr":"906 S Main St","c":"WOODWARD","s":"IA","st":"2551","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Mortensen"},{"d":4,"a":"CASEYS #2559","addr":"1802 Sycamore St","c":"GRANGER","s":"IA","st":"2559","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Mortensen"},{"d":4,"a":"CASEYS #2568","addr":"1510 Sunset Dr","c":"NORWALK","s":"IA","st":"2568","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Hieb"},{"d":4,"a":"CASEYS #2598","addr":"414 S Clark St","c":"PELLA","s":"IA","st":"2598","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Linsley"},{"d":4,"a":"CASEYS #2635","addr":"10010 Nw 62Nd Ave","c":"JOHNSTON","s":"IA","st":"2635","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Schaffer"},{"d":4,"a":"CASEYS #2640","addr":"1006 W Pleasant St","c":"PLEASANTVILLE","s":"IA","st":"2640","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":"Vaughn"},{"d":4,"a":"CASEYS #2641","addr":"2849 E Euclid Ave","c":"DES MOINES","s":"IA","st":"2641","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2644","addr":"975 N Chestnut Ave","c":"EARLHAM","s":"IA","st":"2644","ce":9.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Karas"},{"d":4,"a":"CASEYS #2654","addr":"708 S Division St","c":"STUART","s":"IA","st":"2654","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Blank"},{"d":4,"a":"CASEYS #2683","addr":"6301 Se 116Th St","c":"RUNNELLS","s":"IA","st":"2683","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Vaughn"},{"d":4,"a":"CASEYS #2783","addr":"4901 Nw 86Th St","c":"URBANDALE","s":"IA","st":"2783","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #2786","addr":"5150 Ne 14Th St","c":"DES MOINES","s":"IA","st":"2786","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2899","addr":"1100 Greene St","c":"DE SOTO","s":"IA","st":"2899","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Karas"},{"d":4,"a":"CASEYS #2921","addr":"3725 Beaver Ave","c":"DES MOINES","s":"IA","st":"2921","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #2923","addr":"1850 22Nd St","c":"WEST DES MOINES","s":"IA","st":"2923","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #3026","addr":"209 E Main St","c":"SAINT CHARLES","s":"IA","st":"3026","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Karas"},{"d":4,"a":"CASEYS #3042","addr":"106 W 2Nd St","c":"BROOKLYN","s":"IA","st":"3042","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Moon"},{"d":4,"a":"CASEYS #3055","addr":"504 G Ave","c":"GRUNDY CENTER","s":"IA","st":"3055","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":"Mortenson"},{"d":4,"a":"CASEYS #3075","addr":"6981 Ne 14Th St","c":"ANKENY","s":"IA","st":"3075","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #3098","addr":"105 Grand Ave","c":"WEST DES MOINES","s":"IA","st":"3098","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #32","addr":"117 N Kennedy Ave","c":"MADRID","s":"IA","st":"32","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Mortensen"},{"d":4,"a":"CASEYS #3210","addr":"4400 128Th St","c":"URBANDALE","s":"IA","st":"3210","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Schaffer"},{"d":4,"a":"CASEYS #3217","addr":"1201 E Main St","c":"KNOXVILLE","s":"IA","st":"3217","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Vaughn"},{"d":4,"a":"CASEYS #3228","addr":"916 E Main St","c":"MARSHALLTOWN","s":"IA","st":"3228","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Walker"},{"d":4,"a":"CASEYS #3244","addr":"3750 111Th St","c":"URBANDALE","s":"IA","st":"3244","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #3251","addr":"1303 Se Marshall St","c":"BOONE","s":"IA","st":"3251","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Gunson"},{"d":4,"a":"CASEYS #3309","addr":"106 N Front St","c":"MONTEZUMA","s":"IA","st":"3309","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Savage"},{"d":4,"a":"CASEYS #3319","addr":"1800 S B Ave","c":"NEVADA","s":"IA","st":"3319","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Little"},{"d":4,"a":"CASEYS #3333","addr":"5550 E University Ave","c":"PLEASANT HILL","s":"IA","st":"3333","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #3404","addr":"1020 Gateway Dr","c":"CARLISLE","s":"IA","st":"3404","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Vaughn"},{"d":4,"a":"CASEYS #3422","addr":"500 North Ave","c":"NORWALK","s":"IA","st":"3422","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Hieb"},{"d":4,"a":"CASEYS #3507","addr":"951 Se Gateway Dr","c":"GRIMES","s":"IA","st":"3507","ce":5.0,"p":1,"fb":"06/18/2026","g":0,"rep":"Schaffer"},{"d":4,"a":"CASEYS #3508","addr":"108 Iowa Ave W","c":"MARSHALLTOWN","s":"IA","st":"3508","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Walker"},{"d":4,"a":"CASEYS #3512","addr":"301 E Trail Ridge Ave","c":"INDIANOLA","s":"IA","st":"3512","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Hieb"},{"d":4,"a":"CASEYS #3513","addr":"606 13Th St","c":"BELLE PLAINE","s":"IA","st":"3513","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Moon"},{"d":4,"a":"CASEYS #3518","addr":"1907 Army Post Rd","c":"DES MOINES","s":"IA","st":"3518","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #3566","addr":"509 Main St","c":"PELLA","s":"IA","st":"3566","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Linsley"},{"d":4,"a":"CASEYS #3606","addr":"5150 100Th St","c":"URBANDALE","s":"IA","st":"3606","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #3617","addr":"635 Lang Creek Ave","c":"GRINNELL","s":"IA","st":"3617","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":"Upah"},{"d":4,"a":"CASEYS #3640","addr":"870 Ne Alices Rd","c":"WAUKEE","s":"IA","st":"3640","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Sheets"},{"d":4,"a":"CASEYS #3717","addr":"1112 W 4Th St","c":"VINTON","s":"IA","st":"3717","ce":10.0,"p":1,"fb":"06/19/2026","g":0,"rep":"Mortenson"},{"d":4,"a":"CASEYS #3718","addr":"1175 Ne 75Th St","c":"PLEASANT HILL","s":"IA","st":"3718","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #3746","addr":"1650 Ne Beaverbrooke Blvd","c":"GRIMES","s":"IA","st":"3746","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Schaffer"},{"d":4,"a":"CASEYS #3789","addr":"2480 1St Ave S","c":"ALTOONA","s":"IA","st":"3789","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #3826","addr":"1738 Nile Kinnick S","c":"ADEL","s":"IA","st":"3826","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Blank"},{"d":4,"a":"CASEYS #3827","addr":"3605 Nw Irvinedale Dr","c":"ANKENY","s":"IA","st":"3827","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #3888","addr":"1024 E 1St St","c":"ANKENY","s":"IA","st":"3888","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #3915","addr":"3200 Sw 9Th St","c":"DES MOINES","s":"IA","st":"3915","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Hieb"},{"d":4,"a":"CASEYS #3932","addr":"4580 114Th St","c":"URBANDALE","s":"IA","st":"3932","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Sheets"},{"d":4,"a":"CASEYS #3934","addr":"1515 Se Corporate Woods Dr","c":"ANKENY","s":"IA","st":"3934","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #3953","addr":"3121 Forest Ave","c":"DES MOINES","s":"IA","st":"3953","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Sheets"},{"d":4,"a":"CASEYS #3954","addr":"4343 South 15Th Ave E","c":"NEWTON","s":"IA","st":"3954","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Grandgenett"},{"d":4,"a":"CASEYS #3977","addr":"600 E 14Th St","c":"DES MOINES","s":"IA","st":"3977","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #4269","addr":"600 Nw 10Th St","c":"WAUKEE","s":"IA","st":"4269","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":"Schaffer"},{"d":4,"a":"CASEYS #4319","addr":"601 Soumas Ave","c":"PERRY","s":"IA","st":"4319","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Mortensen"},{"d":4,"a":"CASEYS #4333","addr":"5240 Cumming Ave","c":"CUMMING","s":"IA","st":"4333","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Karas"},{"d":4,"a":"CASEYS #4335","addr":"602 Sugar Grove Ave","c":"DALLAS CENTER","s":"IA","st":"4335","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":"Blank"},{"d":4,"a":"CASEYS #4372","addr":"6961 University Ave","c":"WINDSOR HEIGHTS","s":"IA","st":"4372","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #4396","addr":"1130 2Nd St Nw","c":"BONDURANT","s":"IA","st":"4396","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":"Sheets"},{"d":4,"a":"CASEYS #44","addr":"4560 Ne 14Th St","c":"DES MOINES","s":"IA","st":"44","ce":9.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #45","addr":"2890 E Broadway Ave","c":"DES MOINES","s":"IA","st":"45","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Campero"},{"d":4,"a":"CASEYS #92","addr":"113 Ne 3Rd St","c":"PANORA","s":"IA","st":"92","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Blank"},{"d":8,"a":"CASEYS #1028","addr":"75 Main St","c":"MIDDLETOWN","s":"IA","st":"1028","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1125","addr":"207 S Front St","c":"HUMESTON","s":"IA","st":"1125","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #1327","addr":"1807 Hwy 5","c":"LOVILIA","s":"IA","st":"1327","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1511","addr":"500 W Main St","c":"SEYMOUR","s":"IA","st":"1511","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1577","addr":"122 N Main St","c":"ALBIA","s":"IA","st":"1577","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1609","addr":"811 W Elm St","c":"ELDON","s":"IA","st":"1609","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1624","addr":"1002 W Madison St","c":"WASHINGTON","s":"IA","st":"1624","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1651","addr":"1117 S Clinton St","c":"ALBIA","s":"IA","st":"1651","ce":10.0,"p":1,"fb":"06/19/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1834","addr":"401 Nw Church St","c":"LEON","s":"IA","st":"1834","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1886","addr":"504 W Mary St","c":"OTTUMWA","s":"IA","st":"1886","ce":7.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #1898","addr":"114 N Main St","c":"OSCEOLA","s":"IA","st":"1898","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2019","addr":"501 E Mount Pleasant St","c":"WEST BURLINGTON","s":"IA","st":"2019","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2023","addr":"1208 Ave H","c":"FORT MADISON","s":"IA","st":"2023","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2342","addr":"3105 W Ave","c":"BURLINGTON","s":"IA","st":"2342","ce":10.0,"p":1,"fb":"06/19/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2346","addr":"2630 Summer St","c":"BURLINGTON","s":"IA","st":"2346","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2422","addr":"403 E Townline St","c":"CRESTON","s":"IA","st":"2422","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #2481","addr":"206 S Washington St","c":"BLOOMFIELD","s":"IA","st":"2481","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2498","addr":"710 Hwy 61","c":"WAPELLO","s":"IA","st":"2498","ce":7.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2529","addr":"406 E Main St","c":"LAMONI","s":"IA","st":"2529","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2544","addr":"710 S Pine St","c":"NEW LONDON","s":"IA","st":"2544","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2592","addr":"201 S 4Th St","c":"FARMINGTON","s":"IA","st":"2592","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2595","addr":"326 Main St","c":"KEOKUK","s":"IA","st":"2595","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #2614","addr":"201 Madison Ave","c":"DONNELLSON","s":"IA","st":"2614","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #2626","addr":"501 N Douglas St","c":"AFTON","s":"IA","st":"2626","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #2636","addr":"3530 Main St","c":"KEOKUK","s":"IA","st":"2636","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #3024","addr":"208 Wapello St","c":"MEDIAPOLIS","s":"IA","st":"3024","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3032","addr":"335 N Main St","c":"CHARITON","s":"IA","st":"3032","ce":10.0,"p":1,"fb":"06/19/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3212","addr":"100 W Mclane St","c":"OSCEOLA","s":"IA","st":"3212","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #3223","addr":"903 N Sumner Ave","c":"CRESTON","s":"IA","st":"3223","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #3327","addr":"2125 Libertyville Rd","c":"FAIRFIELD","s":"IA","st":"3327","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3332","addr":"702 1St St","c":"MURRAY","s":"IA","st":"3332","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #3396","addr":"100 E Jackson St","c":"SIGOURNEY","s":"IA","st":"3396","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3528","addr":"1730 E Washington St","c":"WASHINGTON","s":"IA","st":"3528","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3587","addr":"1911 Des Moines Ave","c":"BURLINGTON","s":"IA","st":"3587","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3772","addr":"105 S 18Th St","c":"CENTERVILLE","s":"IA","st":"3772","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #3782","addr":"1305 E South St","c":"MOUNT AYRE","s":"IA","st":"3782","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #3852","addr":"102 W Taylor St","c":"CRESTON","s":"IA","st":"3852","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #3920","addr":"2105 E Washington St","c":"MOUNT PLEASANT","s":"IA","st":"3920","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #42","addr":"700 6Th St","c":"WELLMAN","s":"IA","st":"42","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #4308","addr":"2130 Court Ave","c":"CHARITON","s":"IA","st":"4308","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":8,"a":"CASEYS #4391","addr":"1105 W Agency Rd","c":"WEST BURLINGTON","s":"IA","st":"4391","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":8,"a":"CASEYS #7","addr":"1001 E Main St","c":"OTTUMWA","s":"IA","st":"7","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #1025","addr":"601 E Ave","c":"KALONA","s":"IA","st":"1025","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #1446","addr":"150 E Business 30","c":"LISBON","s":"IA","st":"1446","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #1599","addr":"323 Hwy 30 Sw","c":"MOUNT VERNON","s":"IA","st":"1599","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #1889","addr":"627 S Main St","c":"MONTICELLO","s":"IA","st":"1889","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #2212","addr":"130 41St Ave Dr Sw","c":"CEDAR RAPIDS","s":"IA","st":"2212","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2512","addr":"310 E Main St","c":"HILLS","s":"IA","st":"2512","ce":5.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2566","addr":"1495 State St","c":"ELY","s":"IA","st":"2566","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2629","addr":"200 E 1St St","c":"RIVERSIDE","s":"IA","st":"2629","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2647","addr":"4397 N Center Point Rd","c":"CENTER POINT","s":"IA","st":"2647","ce":7.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2764","addr":"780 N Center Point Rd","c":"HIAWATHA","s":"IA","st":"2764","ce":10.0,"p":1,"fb":"06/19/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2773","addr":"3625 Edgewood Rd Sw","c":"CEDAR RAPIDS","s":"IA","st":"2773","ce":10.0,"p":1,"fb":"06/26/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2777","addr":"65 Williams Blvd","c":"FAIRFAX","s":"IA","st":"2777","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2778","addr":"201 8Th Ave Se","c":"CEDAR RAPIDS","s":"IA","st":"2778","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #2788","addr":"595 N Kansas Ave","c":"NORTH LIBERTY","s":"IA","st":"2788","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #2790","addr":"588 Boyson Rd Ne Ste 110","c":"CEDAR RAPIDS","s":"IA","st":"2790","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3291","addr":"5110 Hwy 13 N","c":"COGGON","s":"IA","st":"3291","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #3294","addr":"5350 31St Ave","c":"URBANA","s":"IA","st":"3294","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3322","addr":"1904 Broadway St","c":"IOWA CITY","s":"IA","st":"3322","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3382","addr":"560 33Rd Ave Sw","c":"CEDAR RAPIDS","s":"IA","st":"3382","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #3384","addr":"1200 S Market St","c":"SOLON","s":"IA","st":"3384","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3463","addr":"615 S Downey St","c":"WEST BRANCH","s":"IA","st":"3463","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3561","addr":"1532 Ellis Blvd Nw","c":"CEDAR RAPIDS","s":"IA","st":"3561","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3562","addr":"680 Lindale Dr","c":"MARION","s":"IA","st":"3562","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #3564","addr":"990 Robins Square Dr","c":"ROBINS","s":"IA","st":"3564","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3645","addr":"302 N Devoe St","c":"LONE TREE","s":"IA","st":"3645","ce":7.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3756","addr":"4560 16Th Ave Sw","c":"CEDAR RAPIDS","s":"IA","st":"3756","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #3898","addr":"23485 County Rd E34","c":"ANAMOSA","s":"IA","st":"3898","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #3955","addr":"245 S Hwy 965","c":"NORTH LIBERTY","s":"IA","st":"3955","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #4324","addr":"1204 1St St","c":"PALO","s":"IA","st":"4324","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":0,"a":"CASEYS #4369","addr":"206 E Benton St","c":"IOWA CITY","s":"IA","st":"4369","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":0,"a":"CASEYS #5079","addr":"2100 S Main St","c":"MONTICELLO","s":"IA","st":"5079","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":6,"a":"CASEYS #1378","addr":"1330 6Th St","c":"JESUP","s":"IA","st":"1378","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #1649","addr":"1312 W Bremer Ave","c":"WAVERLY","s":"IA","st":"1649","ce":10.0,"p":1,"fb":"06/08/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #1887","addr":"2425 Center St","c":"CEDAR FALLS","s":"IA","st":"1887","ce":7.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2169","addr":"816 1St St","c":"INDEPENDENCE","s":"IA","st":"2169","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2239","addr":"1200 5Th Ave Ne","c":"INDEPENDENCE","s":"IA","st":"2239","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2357","addr":"100 Cherry St","c":"ALLISON","s":"IA","st":"2357","ce":7.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2427","addr":"3035 Logan Ave","c":"WATERLOO","s":"IA","st":"2427","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2526","addr":"308 N Washington St","c":"WELLSBURG","s":"IA","st":"2526","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2630","addr":"5226 University Ave","c":"CEDAR FALLS","s":"IA","st":"2630","ce":10.0,"p":1,"fb":"06/08/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #2680","addr":"213 S Main St","c":"CLARKSVILLE","s":"IA","st":"2680","ce":7.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3080","addr":"354 E Eldora Rd","c":"HUDSON","s":"IA","st":"3080","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3371","addr":"33000 Hwy 57","c":"NEW HARTFORD","s":"IA","st":"3371","ce":7.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3434","addr":"1101 Jefferson St","c":"DENVER","s":"IA","st":"3434","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3610","addr":"1225 Fountains Way","c":"CEDAR FALLS","s":"IA","st":"3610","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3653","addr":"209 W South St","c":"GREENE","s":"IA","st":"3653","ce":7.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3763","addr":"1032 4Th St Sw","c":"WAVERLY","s":"IA","st":"3763","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #3880","addr":"1900 W Ridgeway Ave","c":"WATERLOO","s":"IA","st":"3880","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #4279","addr":"1620 W 1St St","c":"CEDAR FALLS","s":"IA","st":"4279","ce":12.0,"p":2,"fb":"06/11/2026","g":0,"rep":""},{"d":6,"a":"CASEYS #66","addr":"402 Hwy N 218","c":"LA PORTE CITY","s":"IA","st":"66","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":3,"a":"CASEYS #1007","addr":"701 Main St","c":"MALVERN","s":"IA","st":"1007","ce":5.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Peterson"},{"d":3,"a":"CASEYS #1330","addr":"1211 Washington St","c":"HAMBURG","s":"IA","st":"1330","ce":5.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Peterson"},{"d":3,"a":"CASEYS #1503","addr":"721 Main St","c":"TABOR","s":"IA","st":"1503","ce":15.0,"p":2,"fb":"06/17/2026","g":0,"rep":"Peterson"},{"d":3,"a":"CASEYS #1567","addr":"912 Main St","c":"ANITA","s":"IA","st":"1567","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":"Ladd"},{"d":3,"a":"CASEYS #1569","addr":"205 Brown St","c":"OAKLAND","s":"IA","st":"1569","ce":3.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Vanek"},{"d":3,"a":"CASEYS #1653","addr":"204 6Th St","c":"CORNING","s":"IA","st":"1653","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Vanek"},{"d":3,"a":"CASEYS #1712","addr":"605 S Fremont St","c":"SHENANDOAH","s":"IA","st":"1712","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Peterson"},{"d":3,"a":"CASEYS #2284","addr":"1030 Veterans Memorial Hwy","c":"COUNCIL BLUFFS","s":"IA","st":"2284","ce":3.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Brown"},{"d":3,"a":"CASEYS #2365","addr":"911 Sw 7Th St","c":"ATLANTIC","s":"IA","st":"2365","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":"Ladd"},{"d":3,"a":"CASEYS #2491","addr":"1107 S 16Th St","c":"CLARINDA","s":"IA","st":"2491","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Vanek"},{"d":3,"a":"CASEYS #2610","addr":"1408 E 7Th St","c":"ATLANTIC","s":"IA","st":"2610","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":"Ladd"},{"d":3,"a":"CASEYS #2612","addr":"106 E Erie St","c":"MISSOURI VALLEY","s":"IA","st":"2612","ce":3.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Gunderson"},{"d":3,"a":"CASEYS #2803","addr":"309 N U Ave","c":"VILLISCA","s":"IA","st":"2803","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Vanek"},{"d":3,"a":"CASEYS #2817","addr":"900 Main St","c":"GRISWOLD","s":"IA","st":"2817","ce":3.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Vanek"},{"d":3,"a":"CASEYS #3050","addr":"510 23Rd Ave","c":"COUNCIL BLUFFS","s":"IA","st":"3050","ce":3.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Brown"},{"d":3,"a":"CASEYS #3201","addr":"701 32Nd Ave","c":"COUNCIL BLUFFS","s":"IA","st":"3201","ce":3.0,"p":1,"fb":"06/26/2026","g":0,"rep":"Brown"},{"d":3,"a":"CASEYS #3202","addr":"111 Mormon Bridge Rd","c":"CRESCENT","s":"IA","st":"3202","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Lindstrom"},{"d":3,"a":"CASEYS #3203","addr":"1928 Sherwood Dr","c":"COUNCIL BLUFFS","s":"IA","st":"3203","ce":6.0,"p":2,"fb":"06/09/2026","g":0,"rep":"Brown"},{"d":3,"a":"CASEYS #3204","addr":"33280 335Th St","c":"MINDEN","s":"IA","st":"3204","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":"Ladd"},{"d":3,"a":"CASEYS #3205","addr":"19900 Virginia Hills Rd","c":"COUNCIL BLUFFS","s":"IA","st":"3205","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Peterson"},{"d":3,"a":"CASEYS #3220","addr":"302 Se 6Th St","c":"GREENFIELD","s":"IA","st":"3220","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":"Ladd"},{"d":3,"a":"CASEYS #3502","addr":"616 Halland Ave","c":"STANTON","s":"IA","st":"3502","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Vanek"},{"d":3,"a":"CASEYS #3509","addr":"1650 E Locust St","c":"CARTER LAKE","s":"IA","st":"3509","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":"Lindstrom"},{"d":3,"a":"CASEYS #3770","addr":"601 S Locust St","c":"GLENWOOD","s":"IA","st":"3770","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":"Peterson"},{"d":3,"a":"CASEYS #38","addr":"102 W Main St","c":"TREYNOR","s":"IA","st":"38","ce":5.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Peterson"},{"d":3,"a":"CASEYS #6116","addr":"15 N 16Th St","c":"COUNCIL BLUFFS","s":"IA","st":"6116","ce":4.0,"p":2,"fb":"06/11/2026","g":0,"rep":"Brown"},{"d":3,"a":"CASEYS #6122","addr":"3434 Nebraska Ave","c":"COUNCIL BLUFFS","s":"IA","st":"6122","ce":6.0,"p":2,"fb":"06/12/2026","g":0,"rep":"Brown"},{"d":9,"a":"CASEYS #1455","addr":"27470 Hwy 65 S","c":"HUBBARD","s":"IA","st":"1455","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #1921","addr":"512 Sherman Ave","c":"ACKLEY","s":"IA","st":"1921","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #20","addr":"1008 Grand Ave","c":"ALDEN","s":"IA","st":"20","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2014","addr":"2206 2Nd Ave N","c":"FORT DODGE","s":"IA","st":"2014","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2060","addr":"605 W Elm Ave","c":"POCAHONTAS","s":"IA","st":"2060","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2211","addr":"2007 N 15Th St","c":"FORT DODGE","s":"IA","st":"2211","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2300","addr":"301 Main St","c":"JEWELL","s":"IA","st":"2300","ce":10.0,"p":1,"fb":"06/10/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2515","addr":"307 3Rd St Nw","c":"DAYTON","s":"IA","st":"2515","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2532","addr":"1807 Edgington Ave","c":"ELDORA","s":"IA","st":"2532","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2686","addr":"3327 5Th Ave S","c":"FORT DODGE","s":"IA","st":"2686","ce":10.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #2891","addr":"235 Ave O","c":"FORT DODGE","s":"IA","st":"2891","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #3418","addr":"1131 Market St","c":"GOWRIE","s":"IA","st":"3418","ce":10.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":9,"a":"CASEYS #51","addr":"907 13Th St N","c":"HUMBOLDT","s":"IA","st":"51","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #1416","addr":"615 N Linn Ave","c":"NEW HAMPTON","s":"IA","st":"1416","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":10,"a":"CASEYS #1753","addr":"101 8Th St N","c":"NORTHWOOD","s":"IA","st":"1753","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #1799","addr":"309 Main St","c":"OSAGE","s":"IA","st":"1799","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #1876","addr":"505 Hwy 65 S","c":"MANLY","s":"IA","st":"1876","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #1896","addr":"202 Us Hwy 18 W","c":"CLEAR LAKE","s":"IA","st":"1896","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #1985","addr":"110 N Hwy 218","c":"SAINT ANSGAR","s":"IA","st":"1985","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #2437","addr":"2701 19Th St Sw","c":"MASON CITY","s":"IA","st":"2437","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #2458","addr":"1361 12Th St Nw","c":"MASON CITY","s":"IA","st":"2458","ce":10.0,"p":1,"fb":"06/19/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #2480","addr":"1105 Blunt Pkwy","c":"CHARLES CITY","s":"IA","st":"2480","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":10,"a":"CASEYS #2511","addr":"601 2Nd Ave Sw","c":"CRESCO","s":"IA","st":"2511","ce":10.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #2513","addr":"100 Amherst Blvd","c":"NASHUA","s":"IA","st":"2513","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #2618","addr":"215 W Main St","c":"FREDERICKSBURG","s":"IA","st":"2618","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":10,"a":"CASEYS #4536","addr":"106 Southgate","c":"CHARLES CITY","s":"IA","st":"4536","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":5,"a":"CASEYS #1329","addr":"8 Central Ave","c":"ESTHERVILLE","s":"IA","st":"1329","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Beelner"},{"d":5,"a":"CASEYS #1536","addr":"301 E Michigan Ave","c":"GEORGE","s":"IA","st":"1536","ce":7.0,"p":1,"fb":"06/19/2026","g":0,"rep":"Bjornson"},{"d":5,"a":"CASEYS #1762","addr":"602 E State St","c":"ALGONA","s":"IA","st":"1762","ce":5.0,"p":1,"fb":"06/23/2026","g":0,"rep":"Naatjes"},{"d":5,"a":"CASEYS #2274","addr":"720 Hwy 71","c":"SIOUX RAPIDS","s":"IA","st":"2274","ce":10.0,"p":1,"fb":"06/17/2026","g":0,"rep":"Halverson"},{"d":5,"a":"CASEYS #2431","addr":"8 7Th St Ne","c":"SIOUX CENTER","s":"IA","st":"2431","ce":5.0,"p":1,"fb":"06/19/2026","g":0,"rep":"Herke"},{"d":5,"a":"CASEYS #3029","addr":"307 S 4Th Ave","c":"ARMSTRONG","s":"IA","st":"3029","ce":5.0,"p":1,"fb":"06/18/2026","g":0,"rep":"Naatjes"},{"d":5,"a":"CASEYS #3043","addr":"576 N Main Ave","c":"BRITT","s":"IA","st":"3043","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Hagen"},{"d":5,"a":"CASEYS #3044","addr":"504 2Nd Ave","c":"SHELDON","s":"IA","st":"3044","ce":7.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Bjornson"},{"d":5,"a":"CASEYS #3262","addr":"101 1St Ave Ne","c":"BUFFALO CENTER","s":"IA","st":"3262","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Hagen"},{"d":5,"a":"CASEYS #3385","addr":"704 8Th Se Se","c":"ORANGE CITY","s":"IA","st":"3385","ce":5.0,"p":1,"fb":"06/19/2026","g":0,"rep":"Herke"},{"d":5,"a":"CASEYS #3476","addr":"1132 Highway 69 S","c":"FOREST CITY","s":"IA","st":"3476","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":"Hagen"},{"d":5,"a":"CASEYS #3679","addr":"207 E Milwaukee Ave","c":"STORM LAKE","s":"IA","st":"3679","ce":10.0,"p":1,"fb":"06/22/2026","g":0,"rep":"Halverson"},{"d":7,"a":"CASEYS #1024","addr":"1131 S Hwy 52","c":"GUTTENBERG","s":"IA","st":"1024","ce":7.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #1591","addr":"401 College Dr","c":"DECORAH","s":"IA","st":"1591","ce":10.0,"p":1,"fb":"06/09/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #1997","addr":"516 Rossville Rd","c":"WAUKON","s":"IA","st":"1997","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":7,"a":"CASEYS #2183","addr":"1807 Old Stage Rd","c":"DECORAH","s":"IA","st":"2183","ce":7.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #2623","addr":"103 4Th St S","c":"FAIRBANK","s":"IA","st":"2623","ce":7.0,"p":1,"fb":"06/12/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #3200","addr":"308 W Mission St","c":"STRAWBERRY POINT","s":"IA","st":"3200","ce":7.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #3293","addr":"103 1St St","c":"MARQUETTE","s":"IA","st":"3293","ce":7.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #3452","addr":"102 E Bradford St","c":"WEST UNION","s":"IA","st":"3452","ce":9.0,"p":2,"fb":"06/11/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #3534","addr":"74 Mill St","c":"CLERMONT","s":"IA","st":"3534","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":7,"a":"CASEYS #3546","addr":"901 S Main St","c":"MONONA","s":"IA","st":"3546","ce":7.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":7,"a":"CASEYS #3639","addr":"620 W Tilden St","c":"POSTVILLE","s":"IA","st":"3639","ce":7.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #1159","addr":"524 11Th St","c":"CORRECTIONVILLE","s":"IA","st":"1159","ce":3.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #2275","addr":"1000 Riverside Blvd","c":"SIOUX CITY","s":"IA","st":"2275","ce":5.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #2447","addr":"111 Gaul Dr","c":"SERGEANT BLUFF","s":"IA","st":"2447","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":11,"a":"CASEYS #2477","addr":"101 5Th Ave Sw","c":"LE MARS","s":"IA","st":"2477","ce":10.0,"p":1,"fb":"06/16/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #2519","addr":"101 1St St","c":"MERRILL","s":"IA","st":"2519","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #2607","addr":"3731 Hamilton Blvd","c":"SIOUX CITY","s":"IA","st":"2607","ce":5.0,"p":1,"fb":"06/11/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #3604","addr":"121 N Floyd Ave","c":"HINTON","s":"IA","st":"3604","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #3648","addr":"80 South St","c":"AKRON","s":"IA","st":"3648","ce":10.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #3674","addr":"4727 Southern Hills Dr","c":"SIOUX CITY","s":"IA","st":"3674","ce":10.0,"p":1,"fb":"06/08/2026","g":0,"rep":""},{"d":11,"a":"CASEYS #3962","addr":"1419 Hamilton Blvd","c":"SIOUX CITY","s":"IA","st":"3962","ce":5.0,"p":1,"fb":"06/15/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #1065","addr":"5505 Asbury Rd","c":"DUBUQUE","s":"IA","st":"1065","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":2,"a":"CASEYS #2420","addr":"2699 Rockdale Rd","c":"DUBUQUE","s":"IA","st":"2420","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #2421","addr":"4003 Peru Rd","c":"DUBUQUE","s":"IA","st":"2421","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #2561","addr":"306 1St St Se","c":"FARLEY","s":"IA","st":"2561","ce":7.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #2578","addr":"801 E Platt St","c":"MAQUOKETA","s":"IA","st":"2578","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":2,"a":"CASEYS #2585","addr":"1402 9Th St Se","c":"DYERSVILLE","s":"IA","st":"2585","ce":7.0,"p":1,"fb":"06/17/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #2915","addr":"1104 N Riverview St","c":"BELLEVUE","s":"IA","st":"2915","ce":10.0,"p":1,"fb":"06/24/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #3077","addr":"236 Peosat St","c":"PEOSTA","s":"IA","st":"3077","ce":10.0,"p":1,"fb":"06/25/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #3473","addr":"1072 Cedar Cross Rd","c":"DUBUQUE","s":"IA","st":"3473","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":2,"a":"CASEYS #3854","addr":"1305 W Commercial St","c":"MANCHESTER","s":"IA","st":"3854","ce":7.0,"p":1,"fb":"06/19/2026","g":0,"rep":""},{"d":2,"a":"CASEYS #4334","addr":"101 Horsfield Industrial Way","c":"EPWORTH","s":"IA","st":"4334","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":2,"a":"CASEYS #77","addr":"717 1St Ave E","c":"CASCADE","s":"IA","st":"77","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #2030","addr":"1336 Camanche Ave","c":"CLINTON","s":"IA","st":"2030","ce":10.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":1,"a":"CASEYS #2077","addr":"3700 W Locust St","c":"DAVENPORT","s":"IA","st":"2077","ce":7.0,"p":1,"fb":"06/23/2026","g":0,"rep":""},{"d":1,"a":"CASEYS #2168","addr":"1691 W 53Rd St","c":"DAVENPORT","s":"IA","st":"2168","ce":7.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":1,"a":"CASEYS #2222","addr":"1107 13Th Ave N","c":"CLINTON","s":"IA","st":"2222","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #2256","addr":"1515 11Th St","c":"DE WITT","s":"IA","st":"2256","ce":8.0,"p":1,"fb":"06/26/2026","g":0,"rep":""},{"d":1,"a":"CASEYS #2429","addr":"3902 State St","c":"BETTENDORF","s":"IA","st":"2429","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #2493","addr":"222 W Front St","c":"BUFFALO","s":"IA","st":"2493","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #2906","addr":"3509 Steamboat Way","c":"MUSCATINE","s":"IA","st":"2906","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #3288","addr":"301 E Mayne St","c":"BLUE GRASS","s":"IA","st":"3288","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #3440","addr":"614 S Washington Blvd","c":"CAMANCHE","s":"IA","st":"3440","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #3523","addr":"26701 Scott Park Rd","c":"ELDRIDGE","s":"IA","st":"3523","ce":6.0,"p":1,"fb":"06/18/2026","g":0,"rep":""},{"d":1,"a":"CASEYS #4025","addr":"4701 S Hwy 61","c":"MUSCATINE","s":"IA","st":"4025","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #61","addr":"624 W 5Th St","c":"WILTON","s":"IA","st":"61","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""},{"d":1,"a":"CASEYS #72","addr":"1107 Cedar St","c":"TIPTON","s":"IA","st":"72","ce":0.0,"p":0,"fb":NaN,"g":1,"rep":""}];
+const DISTS=["7G - Cedar Rapids, IA", "7G - Davenport, IA", "7G - Dubuque, IA", "Doll Dist - Council Bluffs, IA", "Doll Dist - Des Moines, IA", "Doll Dist - Spencer, IA", "Fahr Bev - Waterloo, IA", "Fahr Bev - West Union, IA", "Golden Eagle - Mt Pleasant, IA", "Humes Dist, IA", "Kabrick Dist, IA", "L&L Dist, IA"];
+const DIST_COLORS=["#1565a8", "#2d6a9f", "#0f4c75", "#3a7fc1", "#0d3d6e", "#4a90c4", "#1e5f99", "#2475aa", "#1b5e8c", "#5b9fd4", "#084594", "#2c6fa8"];
+const PS=50;
+let view=[],pg=0,sk='g',sd=-1,statusF='',distF='';
 
-const DIST_NAMES = ["7G - Cedar Rapids","7G - Davenport","7G - Dubuque","Doll Dist - Council Bluffs","Doll Dist - Des Moines","Fahr Bev - West Union","Golden Eagle - Mt Pleasant","Kabrick Dist","L&L Dist"];
-const DIST_COLORS = ["#C8A800","#1D6FA4","#E87722","#166534","#6D28D9","#92740A","#0891b2","#be185d","#16a34a"];
-const CITY_COORDS = {"ACKLEY|IA":[42.5547,-93.0527],"ADAIR|IA":[41.4994,-94.6414],"ADAMS|MN":[43.8088,-92.7213],"ADEL|IA":[41.6133,-94.0169],"AINSWORTH|IA":[41.3511,-91.5504],"AKRON|IA":[42.8333,-96.5587],"ALBANY|IL":[41.788,-90.2127],"ALBERT CITY|IA":[42.7791,-94.9447],"ALBERT LEA|MN":[43.648,-93.3638],"ALBIA|IA":[41.0225,-92.8016],"ALBION|IA":[42.1161,-92.9835],"ALBURNETT|IA":[42.1483,-91.6363],"ALDEN|IA":[42.5122,-93.378],"ALEDO|IL":[41.1985,-90.7494],"ALGONA|IA":[43.07,-94.2336],"ALLISON|IA":[42.7569,-92.7974],"ALTA|IA":[42.6708,-95.2947],"ALTON|IA":[42.9869,-96.0113],"ALTOONA|IA":[41.6466,-93.4685],"ALTURA|MN":[44.0741,-91.9427],"AMANA|IA":[41.7956,-91.8649],"AMBOY|IL":[41.7166,-89.3299],"AMES|IA":[42.0347,-93.62],"ANAMOSA|IA":[42.11,-91.286],"ANDALUSIA|IL":[41.4385,-90.7188],"ANITA|IA":[41.4486,-94.7694],"ANKENY|IA":[41.7297,-93.6024],"APLINGTON|IA":[42.5836,-92.8874],"APPLETON|WI":[44.2619,-88.4154],"ARCADIA|IA":[42.0817,-95.0469],"ARLINGTON|NE":[41.4547,-96.3594],"ARMSTRONG|IA":[43.3958,-94.4744],"ARNOLDS PARK|IA":[43.365,-95.1289],"ASHLAND|NE":[41.0397,-96.3736],"ASHLAND|WI":[46.5927,-90.879],"ATKINS|IA":[41.9983,-91.8574],"ATLANTIC|IA":[41.4022,-95.0136],"AUBURN|IA":[41.97,-95.0819],"AUDUBON|IA":[41.7183,-94.9305],"AUSTIN|MN":[43.6669,-92.9746],"BAILEYS HARBOR|WI":[45.0677,-87.1271],"BALATON|MN":[44.2338,-95.8733],"BANCROFT|IA":[43.2975,-94.215],"BARNES CITY|IA":[41.5,-92.45],"BASEHOR|KS":[39.1375,-94.9377],"BATAVIA|IA":[40.9875,-92.1633],"BEATRICE|NE":[40.273,-96.7466],"BELLE PLAINE|IA":[41.8986,-92.2794],"BELLEVUE|IA":[42.26,-90.4285],"BELLEVUE|NE":[41.1549,-95.9116],"BELMOND|IA":[42.8433,-93.6177],"BELOIT|WI":[42.5083,-89.0318],"BELTON|MO":[38.8133,-94.5319],"BENNINGTON|NE":[41.3647,-96.1597],"BETTENDORF|IA":[41.5245,-90.5079],"BEVINGTON|IA":[41.3539,-93.778],"BIRMINGHAM|IA":[40.8753,-91.9458],"BLAIR|NE":[41.543,-96.1222],"BLAIRSTOWN|IA":[41.9136,-92.0794],"BLOOMFIELD|IA":[40.7525,-92.4138],"BLUE GRASS|IA":[41.5094,-90.7741],"BLUE SPRINGS|MO":[39.0169,-94.2816],"BONDURANT|IA":[41.6986,-93.46],"BOONE|IA":[42.0597,-93.88],"BOONEVILLE|IA":[41.5322,-93.8644],"BOSCOBEL|WI":[43.1316,-90.7027],"BOULDER JUNCTION|WI":[46.1393,-89.8924],"BOUTON|IA":[41.84,-94.0483],"BOYDEN|IA":[43.1839,-96.0007],"BREDA|IA":[42.1817,-94.9747],"BRIGHTON|IA":[41.1736,-91.8203],"BRIMFIELD|IL":[40.848,-89.8791],"BRITT|IA":[43.0936,-93.8033],"BROOKLYN|IA":[41.7347,-92.4466],"BUCKNER|MO":[39.1336,-94.1938],"BUFFALO|IA":[41.4567,-90.726],"BURLINGTON|IA":[40.8073,-91.1133],"BURWELL|NE":[41.7811,-99.1316],"BYRON|IL":[42.1266,-89.2568],"BYRON|MN":[44.0363,-92.6369],"CALAMUS|IA":[41.8258,-90.7613],"CALMAR|IA":[43.1822,-91.8691],"CAMANCHE|IA":[41.795,-90.2596],"CAMBRIDGE|IL":[41.3011,-90.198],"CANTON|IL":[40.5561,-90.0349],"CARLISLE|IA":[41.5014,-93.4938],"CARROLL|IA":[42.0664,-94.868],"CARTER LAKE|IA":[41.2925,-95.9108],"CASCADE|IA":[42.2986,-91.009],"CECIL|WI":[44.8124,-88.4491],"CEDAR FALLS|IA":[42.5347,-92.4458],"CEDAR RAPIDS|IA":[41.9779,-91.6656],"CENTER POINT|IA":[42.1934,-91.7866],"CENTERVILLE|IA":[40.7325,-92.8738],"CENTRAL CITY|IA":[42.2036,-91.5213],"CHAMPAIGN|IL":[40.1164,-88.2434],"CHARITON|IA":[41.0122,-93.3069],"CHARLES CITY|IA":[43.0666,-92.6727],"CHATFIELD|MN":[43.8455,-92.1847],"CHEROKEE|IA":[42.7469,-95.5538],"CHERRY VALLEY|IL":[42.2333,-88.9521],"CHILTON|WI":[44.0302,-88.1605],"CLARENCE|IA":[41.89,-91.0527],"CLARINDA|IA":[40.7347,-95.0347],"CLARION|IA":[42.7297,-93.7316],"CLARKSVILLE|IA":[42.7869,-92.6652],"CLEAR LAKE|IA":[43.1369,-93.3791],"CLERMONT|IA":[43.0008,-91.656],"CLINTON|IA":[41.8444,-90.1888],"CLINTON|WI":[42.5563,-88.8663],"CLIVE|IA":[41.6036,-93.7263],"COAL VALLEY|IL":[41.448,-90.4686],"COGGON|IA":[42.2808,-91.5263],"COLEMAN|WI":[45.0619,-88.0302],"COLESBURG|IA":[42.6386,-91.2004],"COLFAX|IA":[41.6822,-93.2463],"COLLINS|IA":[41.9016,-93.3004],"COLONA|IL":[41.4802,-90.3463],"COLUMBUS|NE":[41.4297,-97.3688],"COLUMBUS JUNCTION|IA":[41.2773,-91.3643],"CONRAD|IA":[42.2269,-92.881],"COON RAPIDS|IA":[41.8722,-94.6813],"CORALVILLE|IA":[41.6766,-91.5804],"CORDOVA|IL":[41.6883,-90.318],"CORNING|IA":[40.9897,-94.7308],"CORRECTIONVILLE|IA":[42.475,-95.7905],"CORYDON|IA":[40.7536,-93.3169],"COTTAGE GROVE|WI":[43.0763,-89.1971],"COUNCIL BLUFFS|IA":[41.2619,-95.8608],"CRESCENT|IA":[41.365,-95.8541],"CRESCO|IA":[43.3769,-92.1152],"CRESTON|IA":[41.0586,-94.3605],"CRETE|NE":[40.6286,-96.9605],"CRIVITZ|WI":[45.2291,-88.0021],"CROFTON|NE":[42.728,-97.4747],"CROSS PLAINS|WI":[43.1186,-89.6577],"CUMMING|IA":[41.4716,-93.7455],"CUMMINGS|IA":[41.4716,-93.7455],"CURRIE|MN":[43.978,-95.6827],"DAHINDA|IL":[41.0619,-90.0961],"DALLAS CENTER|IA":[41.6847,-94.0636],"DALTON CITY|IL":[39.7047,-88.7685],"DANE|WI":[43.2527,-89.5088],"DANVILLE|IL":[40.1242,-87.6297],"DAVENPORT|IA":[41.5236,-90.5776],"DAYTON|IA":[42.2608,-94.0777],"DE PERE|WI":[44.448,-88.0607],"DE SOTO|IA":[41.527,-94.0033],"DE SOTO|KS":[38.9808,-94.968],"DE WITT|IA":[41.8297,-90.5371],"DECATUR|IL":[39.8403,-88.9548],"DECORAH|IA":[43.302,-91.7863],"DEFOREST|WI":[43.2477,-89.3488],"DELAFIELD|WI":[43.0647,-88.379],"DELHI|IA":[42.4289,-91.3352],"DENISON|IA":[41.9925,-95.3522],"DENVER|IA":[42.6716,-92.3341],"DES MOINES|IA":[41.5868,-93.625],"DEXTER|IA":[41.5136,-94.2258],"DIKE|IA":[42.4639,-92.6316],"DIXON|IL":[41.8413,-89.482],"DONNELLSON|IA":[40.643,-91.5672],"DORCHESTER|IA":[43.4605,-91.5224],"DOW CITY|IA":[41.9219,-95.4836],"DOWS|IA":[42.652,-93.4988],"DRAKESVILLE|IA":[40.7986,-92.4961],"DUBUQUE|IA":[42.4963,-90.6777],"DUNLAP|IA":[41.8575,-95.5958],"DURAND|IL":[42.4341,-89.3335],"DURANGO|IA":[42.5661,-90.8499],"DURANT|IA":[41.5994,-90.9063],"DYERSVILLE|IA":[42.4834,-91.1218],"DYSART|IA":[42.1683,-92.3094],"EAGLE|NE":[40.8136,-96.433],"EAGLE GROVE|IA":[42.6603,-93.9063],"EAGLE RIVER|WI":[45.9175,-89.2444],"EARLHAM|IA":[41.493,-94.1277],"EARLVILLE|IA":[42.4866,-91.276],"EARLY|IA":[42.4619,-95.156],"EAST DUBUQUE|IL":[42.4902,-90.643],"EAST MOLINE|IL":[41.5072,-90.4455],"EAST PEORIA|IL":[40.6669,-89.5766],"EDGEWOOD|IA":[42.6469,-91.4038],"EL PASO|IL":[40.7402,-89.0157],"ELDON|IA":[40.9175,-92.2158],"ELDORA|IA":[42.3605,-93.0977],"ELDRIDGE|IA":[41.6552,-90.5846],"ELGIN|IA":[43.0355,-91.6301],"ELIZABETH|IL":[42.3094,-90.2188],"ELK HORN|IA":[41.5922,-95.0644],"ELKADER|IA":[42.8536,-91.4038],"ELKHART|IA":[41.7886,-93.5191],"ELKHORN|NE":[41.2863,-96.2294],"ELLSTON|IA":[40.8597,-94.0847],"ELLSWORTH|IA":[42.3225,-93.576],"ELM CREEK|NE":[40.7197,-99.3735],"ELY|IA":[41.8736,-91.5819],"EMMETSBURG|IA":[43.1094,-94.6822],"EPWORTH|IA":[42.44,-90.9338],"ESSEX|IA":[40.8347,-95.295],"ESTHERVILLE|IA":[43.4011,-94.8338],"EVANSDALE|IA":[42.4669,-92.2822],"EXIRA|IA":[41.59,-94.8794],"EYOTA|MN":[43.9897,-92.2288],"FAIRBANK|IA":[42.6367,-92.0441],"FAIRBURY|NE":[40.1361,-97.1808],"FAIRFAX|IA":[41.92,-91.781],"FAIRFIELD|IA":[40.9972,-91.9677],"FAIRVIEW|IL":[40.6413,-90.17],"FALL RIVER|WI":[43.3872,-89.0485],"FALLS CITY|NE":[40.0619,-95.6005],"FARLEY|IA":[42.4439,-90.9927],"FARMINGTON|IA":[40.64,-91.7352],"FAYETTE|IA":[42.8386,-91.7993],"FERTILE|IA":[43.2661,-93.4286],"FLOYD|IA":[43.1266,-92.7313],"FOND DU LAC|WI":[43.773,-88.4396],"FONDA|IA":[42.578,-94.8461],"FOREST CITY|IA":[43.2619,-93.6366],"FORRESTON|IL":[42.1263,-89.5874],"FORT ATKINSON|WI":[42.9263,-88.8363],"FORT DODGE|IA":[42.4972,-94.168],"FORT MADISON|IA":[40.6303,-91.4541],"FOSTORIA|IA":[42.9333,-94.8361],"FOUNTAIN|MN":[43.7413,-92.1352],"FRANKLIN GROVE|IL":[41.8355,-89.3058],"FREDERICKSBURG|IA":[42.9639,-92.1994],"FREEBORN|MN":[43.7705,-93.5699],"FREEPORT|IL":[42.2966,-89.6218],"FREMONT|NE":[41.433,-96.498],"FULTON|IL":[41.8669,-90.1566],"GALENA|IL":[42.4163,-90.4294],"GALESBURG|IL":[40.9477,-90.3707],"GALVA|IL":[41.168,-90.0391],"GARNAVILLO|IA":[42.8636,-91.2349],"GARNER|IA":[43.1005,-93.6027],"GENESEO|IL":[41.4477,-90.1527],"GEORGE|IA":[43.345,-96.0013],"GILBERT|IA":[42.1083,-93.6538],"GILBERTVILLE|IA":[42.4516,-92.2072],"GILMORE CITY|IA":[42.7308,-94.4477],"GLENWOOD|IA":[41.0466,-95.7447],"GOOSE LAKE|IA":[41.9733,-90.3763],"GOWRIE|IA":[42.2805,-94.293],"GRAETTINGER|IA":[43.2364,-94.7461],"GRAIN VALLEY|MO":[39.0178,-94.1994],"GRAND ISLAND|NE":[40.9247,-98.3421],"GRAND JUNCTION|IA":[42.0369,-94.2438],"GRANGER|IA":[41.7675,-93.8119],"GREEN BAY|WI":[44.5133,-88.0133],"GREENE|IA":[42.8975,-92.8091],"GREENFIELD|IA":[41.3047,-94.4661],"GREENVILLE|WI":[44.2958,-88.5388],"GREENWOOD|MO":[38.8569,-94.3519],"GREENWOOD|NE":[40.9741,-96.4397],"GRETNA|NE":[41.1386,-96.2369],"GRIMES|IA":[41.6886,-93.7908],"GRINNELL|IA":[41.743,-92.7238],"GRISWOLD|IA":[41.2344,-95.1291],"GRUNDY CENTER|IA":[42.363,-92.771],"GUTHRIE CENTER|IA":[41.6766,-94.5005],"GUTTENBERG|IA":[42.788,-91.0994],"HAMBURG|IA":[40.6042,-95.6566],"HAMPTON|IA":[42.743,-93.2013],"HAMPTON|IL":[41.5541,-90.3996],"HANOVER|IL":[42.2688,-90.2905],"HARLAN|IA":[41.6533,-95.3266],"HARPERS FERRY|IA":[43.1983,-91.1538],"HARSHAW|WI":[45.7666,-89.6038],"HARTINGTON|NE":[42.6247,-97.2636],"HARTLEY|IA":[43.178,-95.4772],"HASTINGS|NE":[40.5861,-98.3886],"HAWARDEN|IA":[43.0019,-96.488],"HAWKEYE|IA":[42.9305,-91.9527],"HAYFIELD|MN":[43.8941,-92.8499],"HAZLETON|IA":[42.6161,-91.908],"HEBRON|NE":[40.1661,-97.5836],"HIAWATHA|IA":[42.0397,-91.691],"HIGHLAND|WI":[43.0497,-90.3724],"HILLS|IA":[41.553,-91.533],"HINTON|IA":[42.6233,-96.2936],"HOLDREGE|NE":[40.4408,-99.3694],"HOLSTEIN|IA":[42.4872,-95.545],"HOMESTEAD|IA":[41.7594,-91.8588],"HOUSTON|MN":[43.7633,-91.5602],"HUBBARD|IA":[42.2986,-93.2994],"HUDSON|IA":[42.4083,-92.4577],"HULL|IA":[43.1894,-96.1319],"HUMBOLDT|IA":[42.723,-94.2161],"HUMESTON|IA":[40.8594,-93.4966],"HUXLEY|IA":[41.8947,-93.6005],"IDA GROVE|IA":[42.3441,-95.4711],"INDEPENDENCE|IA":[42.4627,-91.8905],"INDEPENDENCE|MO":[39.0911,-94.4155],"INDIANOLA|IA":[41.3586,-93.5563],"INWOOD|IA":[43.3075,-96.4344],"IOWA CITY|IA":[41.6611,-91.5302],"IOWA FALLS|IA":[42.5227,-93.2616],"JACKSON|MN":[43.6213,-94.9838],"JAMAICA|IA":[41.8419,-94.3097],"JANESVILLE|IA":[42.643,-92.4641],"JANESVILLE|WI":[42.6827,-89.0188],"JASPER|MN":[43.8513,-96.3972],"JEFFERSON|IA":[42.0155,-94.3752],"JESUP|IA":[42.4736,-92.0616],"JEWELL|IA":[42.3055,-93.643],"JOHNSTON|IA":[41.6777,-93.6977],"KALONA|IA":[41.4841,-91.7113],"KANSAS CITY|KS":[39.1155,-94.6268],"KANSAS CITY|MO":[39.0997,-94.5786],"KAUKAUNA|WI":[44.2786,-88.2782],"KEARNEY|NE":[40.6996,-99.0817],"KENSETT|IA":[43.3575,-93.2072],"KEOKUK|IA":[40.3975,-91.3841],"KEOSAUQUA|IA":[40.7347,-91.9611],"KEOTA|IA":[41.3605,-92.0536],"KEWANEE|IL":[41.2455,-89.9241],"KINGSLEY|IA":[42.5841,-95.9727],"KNOXVILLE|IA":[41.3213,-93.1077],"LA CRESCENT|MN":[43.8302,-91.3038],"LA PORTE CITY|IA":[42.3136,-92.193],"LA VALLE|WI":[43.5958,-90.1249],"LA VISTA|NE":[41.1869,-96.0336],"LADORA|IA":[41.7566,-92.1636],"LAKE CITY|IA":[42.2627,-94.7338],"LAKE MILLS|IA":[43.4208,-93.5338],"LAKE TOMAHAWK|WI":[45.818,-89.5588],"LAKE VIEW|IA":[42.3111,-94.993],"LAKEFIELD|MN":[43.6788,-95.1678],"LAMONI|IA":[40.6197,-93.9344],"LANARK|IL":[42.1013,-89.8316],"LANESBORO|MN":[43.7197,-91.9791],"LANSING|IA":[43.3614,-91.2224],"LARCHWOOD|IA":[43.4536,-96.4344],"LAWLER|IA":[43.0936,-92.1577],"LE CLAIRE|IA":[41.5966,-90.3546],"LE MARS|IA":[42.7941,-96.1655],"LEAVENWORTH|KS":[39.3113,-94.9224],"LEAWOOD|KS":[38.9669,-94.6088],"LEES SUMMIT|MO":[38.9108,-94.3822],"LENA|IL":[42.3813,-89.8221],"LENEXA|KS":[38.9531,-94.7336],"LENOX|IA":[40.8816,-94.5594],"LEON|IA":[40.7394,-93.7488],"LESTER|IA":[43.448,-96.3305],"LEWISTON|MN":[43.978,-91.8649],"LEWISTOWN|IL":[40.3994,-90.1544],"LIBERTY|MO":[39.2463,-94.4191],"LINCOLN|NE":[40.8136,-96.7026],"LISBON|IA":[41.9211,-91.3852],"LITTLE CHUTE|WI":[44.2874,-88.3199],"LOGAN|IA":[41.643,-95.7875],"LONE ROCK|WI":[43.1941,-90.2027],"LONE TREE|IA":[41.488,-91.4263],"LOST NATION|IA":[41.9641,-90.7996],"LOUISVILLE|NE":[40.9988,-96.1644],"LOVES PARK|IL":[42.3216,-88.9893],"LOVILIA|IA":[41.1338,-92.9027],"LOWDEN|IA":[41.8603,-90.9274],"LUTHER|IA":[41.9686,-93.8308],"LUVERNE|MN":[43.6538,-96.2122],"LUXEMBURG|IA":[42.5969,-90.716],"LUXENBURG|IA":[42.5969,-90.716],"MACHESNEY PARK|IL":[42.3555,-89.0349],"MACOMB|IL":[40.4577,-90.6716],"MADISON|WI":[43.0731,-89.4012],"MADRID|IA":[41.878,-93.8219],"MAHOMET|IL":[40.1947,-88.4065],"MALVERN|IA":[41.0016,-95.5833],"MANCHESTER|IA":[42.4861,-91.4566],"MANLY|IA":[43.2875,-93.2016],"MANNING|IA":[41.9044,-95.0613],"MANSON|IA":[42.5277,-94.5338],"MANTORVILLE|MN":[44.0672,-92.7577],"MAQUOKETA|IA":[42.0655,-90.6669],"MARCUS|IA":[42.825,-95.8069],"MARENGO|IA":[41.7966,-92.0705],"MARENGO|IL":[42.2483,-88.6066],"MARION|IA":[42.0341,-91.5985],"MARQUETTE|IA":[43.0466,-91.1757],"MARSHALL|MN":[44.4469,-95.7891],"MARSHALLTOWN|IA":[42.0491,-92.9083],"MARTELLE|IA":[42.0191,-91.3605],"MARTENSDALE|IA":[41.3772,-93.7388],"MASON CITY|IA":[43.1536,-93.2013],"MAYNARD|IA":[42.7905,-91.8716],"MC GREGOR|IA":[43.0188,-91.1877],"MCCAUSLAND|IA":[41.7405,-90.4296],"MECHANICSVILLE|IA":[41.9027,-91.2513],"MEDIAPOLIS|IA":[41.01,-91.1613],"MELROSE|IA":[40.9888,-93.0461],"MENASHA|WI":[44.2024,-88.4274],"MENLO|IA":[41.5091,-94.3944],"MERCER|WI":[46.1586,-90.0566],"MERIDEN|IA":[43.0108,-95.8263],"MERRILL|IA":[42.7225,-96.2502],"METAMORA|IL":[40.7897,-89.3621],"MIDDLETON|WI":[43.0969,-89.5035],"MIDDLETOWN|IA":[40.843,-91.2741],"MILAN|IL":[41.4494,-90.5744],"MILFORD|IA":[43.3264,-95.1533],"MINBURN|IA":[41.7591,-94.0413],"MINDEN|IA":[41.4669,-95.5422],"MINDEN|NE":[40.4983,-98.95],"MINGO|IA":[41.7722,-93.2908],"MINOCQUA|WI":[45.8691,-89.7124],"MISSION|KS":[39.0297,-94.6563],"MISSOURI VALLEY|IA":[41.5577,-95.8894],"MITCHELLVILLE|IA":[41.668,-93.3588],"MOLINE|IL":[41.5067,-90.5151],"MONMOUTH|IL":[40.9116,-90.648],"MONONA|IA":[43.0548,-91.3874],"MONROE|IA":[41.5227,-93.1016],"MONROE CENTER|IL":[42.1152,-89.3358],"MONTELLO|WI":[43.7936,-89.3249],"MONTEZUMA|IA":[41.5861,-92.5261],"MONTICELLO|IA":[42.2427,-91.1905],"MONTOUR|IA":[42.028,-92.7197],"MORAVIA|IA":[40.8866,-92.8158],"MORNING SUN|IA":[41.0913,-91.2538],"MORRISON|IL":[41.8108,-89.9674],"MORTON|IL":[40.6119,-89.4638],"MOUNT AYR|IA":[40.7169,-94.233],"MOUNT AYRE|IA":[40.7169,-94.233],"MOUNT CARROLL|IL":[42.0958,-89.9802],"MOUNT HOREB|WI":[43.0052,-89.7377],"MOUNT PLEASANT|IA":[40.963,-91.5466],"MOUNT VERNON|IA":[41.9211,-91.4135],"MOVILLE|IA":[42.4883,-95.8761],"MT ZION|IL":[39.7769,-88.8751],"MUSCATINE|IA":[41.4235,-91.0432],"MUSCODA|WI":[43.1791,-90.4427],"NASHUA|IA":[42.9494,-92.5327],"NEBRASKA CITY|NE":[40.6761,-95.8597],"NEENAH|WI":[44.1852,-88.4627],"NELIGH|NE":[42.1297,-97.453],"NEVADA|IA":[42.02,-93.453],"NEW HAMPTON|IA":[43.0644,-92.3174],"NEW HARTFORD|IA":[42.573,-92.6455],"NEW LONDON|IA":[40.9316,-91.3996],"NEW SHARON|IA":[41.4713,-92.6513],"NEW VIENNA|IA":[42.5452,-91.1274],"NEWMAN GROVE|NE":[41.753,-97.7733],"NEWTON|IA":[41.6994,-93.0477],"NICHOLS|IA":[41.4713,-91.3013],"NORA SPRINGS|IA":[43.1444,-93.0041],"NORFOLK|NE":[42.0283,-97.4172],"NORTH ENGLISH|IA":[41.5127,-92.0819],"NORTH LIBERTY|IA":[41.7488,-91.601],"NORTHWOOD|IA":[43.443,-93.2163],"NORWALK|IA":[41.478,-93.6783],"NORWAY|IA":[41.8938,-92.0008],"OAKLAND|IA":[41.3091,-95.398],"OAKLAND|NE":[41.8327,-96.4711],"OAKVILLE|IA":[41.1005,-91.0513],"OELWEIN|IA":[42.673,-91.9144],"OGDEN|IA":[42.0377,-94.0261],"OKOBOJI|IA":[43.3819,-95.1391],"OLATHE|KS":[38.8814,-94.8191],"OLIN|IA":[41.9988,-90.7435],"OMAHA|NE":[41.2565,-95.9345],"ONEIDA|WI":[44.4963,-88.1994],"ONEILL|NE":[42.4583,-98.6508],"ORANGE CITY|IA":[43.0044,-96.0577],"ORD|NE":[41.6036,-98.9241],"OREGON|IL":[42.0152,-89.3352],"ORION|IL":[41.3544,-90.3816],"OSAGE|IA":[43.2844,-92.8133],"OSCEOLA|IA":[41.0261,-93.7672],"OSHKOSH|WI":[44.0247,-88.5426],"OSKALOOSA|IA":[41.2966,-92.6441],"OSSIAN|IA":[43.153,-91.768],"OTTUMWA|IA":[41.018,-92.4111],"OVERLAND PARK|KS":[38.9822,-94.6708],"OXFORD|IA":[41.7163,-91.7849],"PACIFIC JUNCTION|IA":[41.02,-95.8],"PALO|IA":[42.0658,-91.7985],"PANORA|IA":[41.6922,-94.3644],"PAOLA|KS":[38.5722,-94.8791],"PAPILLION|NE":[41.1539,-96.0436],"PARK FALLS|WI":[45.9336,-90.4418],"PARNELL|IA":[41.5836,-91.9852],"PATON|IA":[42.1616,-94.2605],"PAULLINA|IA":[42.9852,-95.6858],"PECULIAR|MO":[38.718,-94.4566],"PELLA|IA":[41.408,-92.9177],"PEORIA|IL":[40.6936,-89.589],"PEORIA HEIGHTS|IL":[40.7311,-89.5625],"PEOSTA|IA":[42.4536,-90.8485],"PERRY|IA":[41.838,-94.1066],"PERU|NE":[40.4736,-95.7366],"PICKEREL|WI":[45.5669,-89.0685],"PINE ISLAND|MN":[44.2019,-92.6549],"PIPESTONE|MN":[44.0013,-96.3194],"PLATTEVILLE|WI":[42.7341,-90.4788],"PLATTSMOUTH|NE":[41.0086,-95.8797],"PLEASANT HILL|IA":[41.5944,-93.5138],"PLEASANT VALLEY|IA":[41.5552,-90.4263],"PLEASANTVILLE|IA":[41.3872,-93.2716],"POCAHONTAS|IA":[42.7316,-94.6752],"POLK CITY|IA":[41.7741,-93.7163],"POMEROY|IA":[42.5538,-94.688],"POPLAR GROVE|IL":[42.3647,-88.8218],"PORT BYRON|IL":[41.6105,-90.3336],"PORTAGE|WI":[43.5388,-89.4635],"PORTERFIELD|WI":[45.1894,-87.9605],"POTOSI|WI":[42.6886,-90.7083],"PRAIRIE CITY|IA":[41.5938,-93.2341],"PRAIRIE DU CHIEN|WI":[43.0511,-91.1418],"PRAIRIE DU SAC|WI":[43.2863,-89.7238],"PRAIRIE VILLAGE|KS":[38.9908,-94.633],"PRESTON|IA":[42.0513,-90.4099],"PRESTON|MN":[43.6697,-92.083],"PRIMGHAR|IA":[43.0855,-95.6244],"PRINCETON|IA":[41.6702,-90.35],"PRINCETON|IL":[41.3686,-89.4657],"PRINCEVILLE|IL":[40.9291,-89.756],"PROLE|IA":[41.3725,-93.5972],"PROMISE CITY|IA":[40.7469,-93.1511],"PROPHETSTOWN|IL":[41.6711,-89.938],"PROTIVIN|IA":[43.2261,-92.0763],"QUASQUETON|IA":[42.393,-91.7499],"RAPIDS CITY|IL":[41.5811,-90.3496],"RAYMOND|IA":[42.5258,-92.161],"RAYMORE|MO":[38.8041,-94.4572],"READLYN|IA":[42.698,-92.2369],"RED CLOUD|NE":[40.0877,-98.5205],"RED OAK|IA":[41.0041,-95.2291],"REDFIELD|IA":[41.5841,-94.1838],"REEDSBURG|WI":[43.5338,-89.9988],"REINBECK|IA":[42.3252,-92.5947],"RHINELANDER|WI":[45.6363,-89.4124],"RHODES|IA":[41.9266,-93.1655],"RICEVILLE|IA":[43.3636,-92.5488],"RICHLAND|IA":[41.1938,-91.9963],"RIDGEWAY|IA":[43.2861,-92.0141],"RIO|WI":[43.4469,-89.2399],"RIVERSIDE|IA":[41.4788,-91.5802],"ROBINS|IA":[42.0736,-91.6735],"ROCHELLE|IL":[41.9244,-89.066],"ROCHESTER|MN":[44.0234,-92.4669],"ROCK FALLS|IL":[41.7788,-89.6876],"ROCK ISLAND|IL":[41.5095,-90.5788],"ROCK RAPIDS|IA":[43.4252,-96.168],"ROCK VALLEY|IA":[43.2044,-96.295],"ROCKFORD|IL":[42.2711,-89.0939],"ROCKTON|IL":[42.4513,-89.071],"ROCKWELL CITY|IA":[42.3966,-94.6338],"ROSCOE|IL":[42.4258,-89.0099],"RUNNELLS|IA":[41.5313,-93.353],"RUTHVEN|IA":[43.1255,-94.8977],"RYAN|IA":[42.3511,-91.4663],"SAC CITY|IA":[42.4233,-94.9927],"SAINT ANSGAR|IA":[43.378,-92.9177],"SAINT CHARLES|IA":[41.3072,-93.7963],"SAINT CHARLES|MN":[43.968,-92.0652],"SAINT LUCAS|IA":[43.0666,-91.9513],"SAINT OLAF|IA":[42.9269,-91.4352],"SAINT PAUL|NE":[41.213,-98.4558],"SANBORN|IA":[43.1802,-95.6566],"SAUK CITY|WI":[43.2686,-89.7174],"SAVANNA|IL":[42.0875,-90.1363],"SCALES MOUND|IL":[42.483,-90.2544],"SCHUYLER|NE":[41.448,-97.06],"SCRANTON|IA":[42.0194,-94.548],"SERGEANT BLUFF|IA":[42.4025,-96.3594],"SHAWNEE|KS":[39.0227,-94.7149],"SHEFFIELD|IA":[42.893,-93.2152],"SHEFFIELD|IL":[41.3566,-89.7313],"SHELDON|IA":[43.1836,-95.8536],"SHELL ROCK|IA":[42.708,-92.5822],"SHELLSBURG|IA":[42.0955,-91.8705],"SHENANDOAH|IA":[40.7652,-95.3708],"SHERRARD|IL":[41.3147,-90.5008],"SHERRILL|IA":[42.5905,-90.7635],"SHERWOOD|WI":[44.1741,-88.2588],"SIBLEY|IA":[43.4019,-95.7508],"SIDNEY|IA":[40.7441,-95.6494],"SIGOURNEY|IA":[41.3327,-92.2038],"SILVIS|IL":[41.5141,-90.4211],"SIOUX CENTER|IA":[43.0802,-96.1766],"SIOUX CITY|IA":[42.4999,-96.4003],"SIOUX RAPIDS|IA":[42.8891,-95.1522],"SISTER BAY|WI":[45.1941,-87.1191],"SLATER|IA":[41.8744,-93.6913],"SMITHVILLE|MO":[39.3872,-94.5811],"SOLDIERS GROVE|WI":[43.3963,-90.7663],"SOLON|IA":[41.803,-91.4949],"SOUTH BELOIT|IL":[42.4902,-89.0349],"SOUTH SIOUX CITY|NE":[42.4688,-96.4133],"SPENCER|IA":[43.1413,-95.1541],"SPILLVILLE|IA":[43.1955,-91.9313],"SPIRIT LAKE|IA":[43.4247,-95.1011],"SPRING GREEN|WI":[43.1786,-90.0666],"SPRINGFIELD|IL":[39.7817,-89.6501],"SPRINGFIELD|NE":[41.078,-96.1477],"SPRINGVILLE|IA":[42.0572,-91.4402],"ST GERMAIN|WI":[45.908,-89.4927],"STANWOOD|IA":[41.8961,-91.163],"STATE CENTER|IA":[42.0144,-93.1627],"STERLING|IL":[41.788,-89.6965],"STEWARTVILLE|MN":[43.8588,-92.4847],"STILLMAN VALLEY|IL":[42.0977,-89.1802],"STORM LAKE|IA":[42.64,-95.2097],"STORY CITY|IA":[42.1872,-93.5952],"STOUGHTON|WI":[42.9174,-89.2199],"STRATFORD|IA":[42.2694,-93.9227],"STRAWBERRY POINT|IA":[42.6836,-91.5344],"STRONGHURST|IL":[40.748,-90.9163],"STUART|IA":[41.5013,-94.3188],"STURGEON BAY|WI":[44.8341,-87.3773],"SUAMICO|WI":[44.533,-88.0638],"SUBLETTE|IL":[41.6375,-89.2524],"SULLY|IA":[41.5772,-92.8427],"SUMNER|IA":[42.8488,-92.093],"SUN PRAIRIE|WI":[43.1844,-89.2135],"SUPERIOR|IA":[43.4466,-95.1472],"SUTTON|NE":[40.6,-97.8616],"SWISHER|IA":[41.8427,-91.6819],"SYRACUSE|NE":[40.6594,-96.1852],"TABOR|IA":[40.8958,-95.6716],"TAMA|IA":[41.968,-92.5772],"TAYLOR RIDGE|IL":[41.3919,-90.5041],"TEKAMAH|NE":[41.7886,-96.2169],"THOMSON|IL":[41.958,-90.1024],"TIFFIN|IA":[41.7,-91.6649],"TIPTON|IA":[41.7708,-91.1316],"TOLEDO|IA":[41.9913,-92.5777],"TOWNSEND|WI":[45.3319,-88.5163],"TRAER|IA":[42.1952,-92.4622],"TREMONT|IL":[40.5252,-89.493],"TREYNOR|IA":[41.228,-95.6016],"TRIPOLI|IA":[42.8086,-92.2547],"TRIPOLI|WI":[45.6063,-90.108],"TROY MILLS|IA":[42.3163,-91.7196],"TRURO|IA":[41.2152,-93.8544],"TUSCOLA|IL":[39.7991,-88.2843],"UNDERWOOD|IA":[41.3836,-95.7094],"UNION|IL":[42.2302,-88.5434],"URBANA|IA":[42.2266,-91.8838],"URBANDALE|IA":[41.6263,-93.7122],"VALLEY|NE":[41.3119,-96.3508],"VAN HORNE|IA":[42.0077,-92.0819],"VAN METER|IA":[41.5319,-93.9541],"VENTURA|IA":[43.1277,-93.4738],"VERONA|WI":[42.9913,-89.5335],"VICTOR|IA":[41.7313,-92.2994],"VILLISCA|IA":[40.9297,-94.9808],"VINTON|IA":[42.168,-92.0266],"VIOLA|IL":[41.2024,-90.5838],"WABENO|WI":[45.4269,-88.6388],"WALCOTT|IA":[41.588,-90.7888],"WALFORD|IA":[41.943,-91.8163],"WALKER|IA":[42.2841,-91.7738],"WAPELLO|IA":[41.1827,-91.1832],"WASHINGTON|IA":[41.3002,-91.6938],"WASHINGTON|IL":[40.6986,-89.4063],"WATERLOO|IA":[42.4927,-92.3426],"WATERLOO|NE":[41.2863,-96.2925],"WAUKEE|IA":[41.6113,-93.8744],"WAUKON|IA":[43.2669,-91.4771],"WAUNAKEE|WI":[43.193,-89.4538],"WAUPACA|WI":[44.3552,-89.0877],"WAUSAUKEE|WI":[45.3799,-87.9585],"WAVERLY|IA":[42.7252,-92.4752],"WAYNE|NE":[42.2327,-97.0161],"WEBSTER CITY|IA":[42.4669,-93.8155],"WELLMAN|IA":[41.4636,-91.8408],"WELLS|MN":[43.7413,-93.7288],"WELLSBURG|IA":[42.443,-92.9291],"WELTON|IA":[41.9197,-90.5438],"WEST BEND|IA":[42.9547,-94.4463],"WEST BRANCH|IA":[41.6702,-91.3474],"WEST BURLINGTON|IA":[40.8191,-91.1766],"WEST CONCORD|MN":[44.143,-92.8913],"WEST DES MOINES|IA":[41.5772,-93.7113],"WEST LIBERTY|IA":[41.5699,-91.2638],"WEST POINT|IA":[40.7155,-91.4702],"WEST POINT|NE":[41.8391,-96.7086],"WEST UNION|IA":[42.9613,-91.8063],"WESTBROOK|MN":[44.0486,-95.4288],"WESTGATE|IA":[42.7552,-91.9827],"WHEATLAND|IA":[41.833,-90.8371],"WHITING|IA":[42.128,-96.1508],"WILBER|NE":[40.4822,-97.0005],"WILLIAMS|IA":[42.4891,-93.5402],"WILLIAMSBURG|IA":[41.6613,-92.003],"WILLIAMSFIELD|IL":[40.9225,-90.0358],"WILTON|IA":[41.5902,-91.0185],"WINDOM|MN":[43.8655,-95.1177],"WINDSOR HEIGHTS|IA":[41.5975,-93.7172],"WINFIELD|IA":[41.1263,-91.4363],"WINNEBAGO|IL":[42.2666,-89.2404],"WINONA|MN":[44.0497,-91.6388],"WINTERSET|IA":[41.3294,-94.0147],"WINTHROP|IA":[42.4713,-91.7313],"WISCONSIN DELLS|WI":[43.6275,-89.7702],"WOODBINE|IA":[41.7336,-95.7025],"WOODRUFF|WI":[45.9038,-89.6969],"WOODWARD|IA":[41.8577,-93.9244],"WORTHINGTON|IA":[42.3911,-95.1613],"WORTHINGTON|MN":[43.6197,-95.5966],"WYOMING|IA":[42.0611,-91.0038],"YORK|NE":[40.8694,-97.5919],"ZUMBRO FALLS|MN":[44.2736,-92.4163],"ZUMBROTA|MN":[44.2941,-92.6699],"ZWINGLE|IA":[42.2869,-90.6988],"DENMARK|WI":[44.3494,-87.8257],"MARINETTE|WI":[45.1002,-87.6302],"ALPHA|IL":[41.1956,-90.3784],"AYRSHIRE|IA":[43.0305,-94.8266],"BARABOO|WI":[43.4711,-89.7443],"BRIGGSVILLE|WI":[43.6697,-89.6026],"BUFFALO CENTER|IA":[43.3858,-93.9527],"CAMBRIDGE|WI":[43.0016,-89.0218],"DELMAR|IA":[42.0058,-90.6151],"EASTON|MN":[43.7566,-93.9066],"EDDYVILLE|IA":[41.1533,-92.6357],"ELGIN|MN":[44.1266,-92.2538],"ERIE|IL":[41.6528,-90.0751],"GARDNER|KS":[38.8122,-94.9274],"GREEN LAKE|WI":[43.8433,-88.9732],"HARVARD|IL":[42.4272,-88.6123],"HEDRICK|IA":[41.1711,-92.3049],"KELLOGG|IA":[41.7127,-92.9074],"KNOXVILLE|IL":[40.9084,-90.2843],"LAKE PARK|IA":[43.4549,-95.3235],"LIBERTYVILLE|IA":[40.9502,-91.993],"LOHRVILLE|IA":[42.2688,-94.5463],"LYLE|MN":[43.5047,-92.9398],"LYTTON|IA":[42.4252,-94.8666],"MONTROSE|IA":[40.5319,-91.4212],"MOUNT MORRIS|IL":[42.0525,-89.4337],"MURRAY|IA":[41.043,-93.951],"NEW VIRGINIA|IA":[41.1835,-93.7313],"OCONOMOWOC|WI":[43.1044,-88.4996],"ONAWA|IA":[42.0277,-96.0984],"OQUAWKA|IL":[40.932,-90.9451],"OREGON|WI":[42.9244,-89.3843],"PARDEEVILLE|WI":[43.5369,-89.2968],"PARKVILLE|MO":[39.1953,-94.6824],"PILOT MOUND|IA":[42.1605,-94.0124],"PLEASANT HILL|MO":[38.7894,-94.2685],"PLYMOUTH|NE":[40.3069,-97.0031],"POSTVILLE|IA":[43.0858,-91.5682],"READSTOWN|WI":[43.453,-90.7579],"RIPON|WI":[43.843,-88.8373],"ROANOKE|IL":[40.7934,-89.1901],"SABULA|IA":[42.0697,-90.1712],"SENECA|WI":[43.2891,-91.0601],"SEYMOUR|IA":[40.6866,-93.1207],"SHIOCTON|WI":[44.443,-88.5629],"URBANA|IL":[40.1106,-88.2073],"WAHOO|NE":[41.2121,-96.6225],"WALNUT|IA":[41.4769,-95.2263],"WAUSA|NE":[42.6013,-97.5353],"AFTON|IA":[41.0299,-94.1952],"STANTON|IA":[40.9855,-95.1108]};
-// [di, store#, addr, city, state, ce12m]
-const RAW = [[0,"1889","627 S Main St","MONTICELLO","IA",17],[0,"2773","3625 Edgewood Rd Sw","CEDAR RAPIDS","IA",156],[0,"2778","201 8Th Ave Se","CEDAR RAPIDS","IA",206],[0,"3291","5110 Hwy 13 N","COGGON","IA",79],[0,"3382","560 33Rd Ave Sw","CEDAR RAPIDS","IA",86],[0,"3562","680 Lindale Dr","MARION","IA",96],[0,"3898","23485 County Rd E34","ANAMOSA","IA",79],[0,"3955","245 S Hwy 965","NORTH LIBERTY","IA",176],[0,"4369","206 E Benton St","IOWA CITY","IA",73],[0,"5079","2100 S Main St","MONTICELLO","IA",34],[1,"2222","1107 13Th Ave N","CLINTON","IA",44],[1,"2256","1515 11Th St","DE WITT","IA",18],[1,"2429","3902 State St","BETTENDORF","IA",35],[1,"2493","222 W Front St","BUFFALO","IA",65],[1,"2906","3509 Steamboat Way","MUSCATINE","IA",55],[1,"3288","301 E Mayne St","BLUE GRASS","IA",71],[1,"3440","614 S Washington Blvd","CAMANCHE","IA",24],[1,"4025","4701 S Hwy 61","MUSCATINE","IA",35],[1,"61","624 W 5Th St","WILTON","IA",51],[1,"72","1107 Cedar St","TIPTON","IA",50],[2,"1065","5505 Asbury Rd","DUBUQUE","IA",46],[2,"2578","801 E Platt St","MAQUOKETA","IA",32],[2,"3473","1072 Cedar Cross Rd","DUBUQUE","IA",73],[2,"77","717 1St Ave E","CASCADE","IA",38],[3,"1653","204 6Th St","CORNING","IA",27],[3,"1712","605 S Fremont St","SHENANDOAH","IA",22],[3,"2284","1030 Veterans Memorial Hwy","COUNCIL BLUFFS","IA",19],[3,"2491","1107 S 16Th St","CLARINDA","IA",25],[3,"2803","309 N U Ave","VILLISCA","IA",21],[3,"3201","701 32Nd Ave","COUNCIL BLUFFS","IA",14],[3,"3205","19900 Virginia Hills Rd","COUNCIL BLUFFS","IA",46],[3,"3502","616 Halland Ave","STANTON","IA",26],[3,"3770","601 S Locust St","GLENWOOD","IA",23],[4,"1617","508 N Elm St","JEFFERSON","IA",24],[4,"1682","1310 A Ave W","OSKALOOSA","IA",32],[4,"1827","1007 N Lincoln St","KNOXVILLE","IA",24],[4,"1861","1455 Grant St S","BONDURANT","IA",57],[4,"1892","702 E Gilman St","SHEFFIELD","IA",24],[4,"1901","2541 Nw 66Th Ave","DES MOINES","IA",99],[4,"1908","507 S Jefferson Way","INDIANOLA","IA",61],[4,"1910","6110 Merle Hay Rd","JOHNSTON","IA",55],[4,"2","114 Mamie Eisenhower Ave","BOONE","IA",42],[4,"2097","1006 W 2Nd Ave","INDIANOLA","IA",49],[4,"2177","309 Center Ave S","MITCHELLVILLE","IA",31],[4,"2179","1955 Se University Ave","WAUKEE","IA",124],[4,"2237","1002 W 2Nd St","PRAIRIE CITY","IA",77],[4,"2272","1203 N Walnut St","COLFAX","IA",71],[4,"2314","3527 Indianola Ave","DES MOINES","IA",56],[4,"2392","5340 Nw Beaver Dr","JOHNSTON","IA",76],[4,"24","1127 Story St","BOONE","IA",45],[4,"2474","104 N Us Hwy 69","HUXLEY","IA",104],[4,"2478","205 S Main St","NEW SHARON","IA",25],[4,"2488","504 S Main St","NORTH ENGLISH","IA",61],[4,"2490","1625 Broad St","STORY CITY","IA",40],[4,"2494","200 S Commercial Ave","EAGLE GROVE","IA",11],[4,"2559","1802 Sycamore St","GRANGER","IA",98],[4,"2598","414 S Clark St","PELLA","IA",70],[4,"2786","5150 Ne 14Th St","DES MOINES","IA",34],[4,"3042","106 W 2Nd St","BROOKLYN","IA",72],[4,"3075","6981 Ne 14Th St","ANKENY","IA",85],[4,"3210","4400 128Th St","URBANDALE","IA",80],[4,"3228","916 E Main St","MARSHALLTOWN","IA",8],[4,"3251","1303 Se Marshall St","BOONE","IA",64],[4,"3309","106 N Front St","MONTEZUMA","IA",49],[4,"3422","500 North Ave","NORWALK","IA",103],[4,"3512","301 E Trail Ridge Ave","INDIANOLA","IA",66],[4,"3513","606 13Th St","BELLE PLAINE","IA",33],[4,"3566","509 Main St","PELLA","IA",84],[4,"3640","870 Ne Alices Rd","WAUKEE","IA",107],[4,"3746","1650 Ne Beaverbrooke Blvd","GRIMES","IA",62],[4,"3915","3200 Sw 9Th St","DES MOINES","IA",127],[4,"3932","4580 114Th St","URBANDALE","IA",71],[4,"3953","3121 Forest Ave","DES MOINES","IA",69],[4,"4372","6961 University Ave","WINDSOR HEIGHTS","IA",94],[4,"44","4560 Ne 14Th St","DES MOINES","IA",24],[5,"1997","516 Rossville Rd","WAUKON","IA",21],[5,"3534","74 Mill St","CLERMONT","IA",11],[6,"1125","207 S Front St","HUMESTON","IA",26],[6,"2422","403 E Townline St","CRESTON","IA",11],[6,"2595","326 Main St","KEOKUK","IA",22],[6,"2626","501 N Douglas St","AFTON","IA",27],[6,"2636","3530 Main St","KEOKUK","IA",24],[6,"3212","100 W Mclane St","OSCEOLA","IA",38],[6,"3223","903 N Sumner Ave","CRESTON","IA",21],[6,"3332","702 1St St","MURRAY","IA",14],[6,"3782","1305 E South St","MOUNT AYRE","IA",43],[6,"3852","102 W Taylor St","CRESTON","IA",36],[6,"4308","2130 Court Ave","CHARITON","IA",0],[7,"1416","615 N Linn Ave","NEW HAMPTON","IA",31],[7,"2480","1105 Blunt Pkwy","CHARLES CITY","IA",12],[8,"2447","111 Gaul Dr","SERGEANT BLUFF","IA",17]];
+(()=>{
+  const sel=document.getElementById('distSel');
+  DISTS.forEach((d,i)=>{const o=document.createElement('option');o.value=i;o.textContent=d;sel.appendChild(o);});
+  const tot=ROWS.length, gaps=ROWS.filter(r=>r.g).length, ce=ROWS.reduce((s,r)=>s+r.ce,0);
+  document.getElementById('hmeta').textContent=tot.toLocaleString()+' accounts · '+gaps+' gaps · '+ce.toFixed(1)+' CE';
+})();
 
-let viewerLat=null, viewerLon=null;
-let accts=[], filtered=[];
-let distFilter=-1, searchQ='', sortKey='name', sortDir=1, page=0;
-const PAGE_SIZE=50;
-
-function haversineMiles(la1,lo1,la2,lo2){
-  const R=3958.8,dL=(la2-la1)*Math.PI/180,dN=(lo2-lo1)*Math.PI/180;
-  const a=Math.sin(dL/2)**2+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dN/2)**2;
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+function fmtDate(s){
+  if(!s) return '<span style="color:#d0d7e6">—</span>';
+  return s;
 }
 
-function buildAccts(){
-  accts = RAW.map(r => {
-    const [di,store,addr,city,state,ce12] = r;
-    const cc = CITY_COORDS[city+'|'+state];
-    const lat = cc && (Array.isArray(cc) ? cc[0] : cc.lat);
-    const lon = cc && (Array.isArray(cc) ? cc[1] : cc.lon);
-    const proxMi = (viewerLat!==null && lat!=null) ? haversineMiles(viewerLat,viewerLon,lat,lon) : 9999;
-    return {di,store,addr,ci:city,st:state,ce12,proxMi};
-  });
+function setStatus(v, btn){
+  statusF=v;
+  document.querySelectorAll('#statusToggle button').forEach(b=>{b.classList.remove('active','allbtn');b.style.background='#fff';b.style.color=b.dataset.v==='gap'?'#b42318':b.dataset.v==='ok'?'#1565a8':'#6b7a99';});
+  btn.classList.add('active');
+  if(v==='gap'){btn.style.background='#b42318';btn.style.color='#fff';}
+  else if(v==='ok'){btn.style.background='#1565a8';btn.style.color='#fff';}
+  else{btn.classList.add('allbtn');btn.style.background='#1565a8';btn.style.color='#fff';}
+  pg=0;applyFilters();
+}
+
+function setDistFilterFromChart(idx){
+  distF = (distF===String(idx)) ? '' : String(idx);
+  document.getElementById('distSel').value=distF;
+  pg=0;applyFilters();
 }
 
 function applyFilters(){
-  const q = searchQ.toLowerCase();
-  filtered = accts.filter(a => {
-    if(distFilter>=0 && a.di!==distFilter) return false;
-    if(q && !a.store.toLowerCase().includes(q) && !a.ci.toLowerCase().includes(q) &&
-       !a.addr.toLowerCase().includes(q) && !DIST_NAMES[a.di].toLowerCase().includes(q)) return false;
+  const q=(document.getElementById('q').value||'').trim().toLowerCase();
+  distF=document.getElementById('distSel').value;
+  view=ROWS.filter(r=>{
+    if(q&&!r.a.toLowerCase().includes(q)&&!r.c.toLowerCase().includes(q)&&!r.addr.toLowerCase().includes(q))return false;
+    if(statusF==='gap'&&!r.g)return false;
+    if(statusF==='ok'&&r.g)return false;
+    if(distF!==''&&String(r.d)!==distF)return false;
     return true;
   });
-  sortFiltered();
-  updateKPIs();
-  renderDistBars();
-  renderStats();
+  sortView();pg=0;
+  renderKPIs(view);
+  renderDistBars(view);
+  renderDonut(view);
   renderTable();
 }
 
-function sortFiltered(){
-  filtered.sort((a,b)=>{
-    let av,bv;
-    if(sortKey==='name'){av='#'+a.store;bv='#'+b.store;}
-    else if(sortKey==='city'){av=a.ci;bv=b.ci;}
-    else if(sortKey==='dist'){av=DIST_NAMES[a.di];bv=DIST_NAMES[b.di];}
-    else if(sortKey==='ce12'){av=a.ce12;bv=b.ce12;}
-    else if(sortKey==='prox'){av=a.proxMi;bv=b.proxMi;}
-    else{av='#'+a.store;bv='#'+b.store;}
-    return av<bv?-sortDir:av>bv?sortDir:0;
-  });
+function renderKPIs(data){
+  const tot=data.length, gaps=data.filter(r=>r.g).length, ok=tot-gaps;
+  const ce=data.reduce((s,r)=>s+r.ce,0);
+  document.getElementById('kTotal').textContent=tot.toLocaleString();
+  document.getElementById('kGap').textContent=gaps.toLocaleString();
+  document.getElementById('kGapPct').textContent=tot?Math.round(gaps/tot*100)+'% of accounts':'—';
+  document.getElementById('kOk').textContent=ok.toLocaleString();
+  document.getElementById('kOkPct').textContent=tot?Math.round(ok/tot*100)+'% of accounts':'—';
+  document.getElementById('kCE').textContent=ce.toFixed(1);
 }
 
-function updateKPIs(){
-  const nDists = new Set(filtered.map(a=>a.di)).size;
-  setText('kAccts', filtered.length.toLocaleString());
-  setText('kDists', nDists);
-  const byDist = new Map();
-  for(const a of filtered) byDist.set(a.di,(byDist.get(a.di)||0)+1);
-  const top = [...byDist.entries()].sort((a,b)=>b[1]-a[1])[0];
-  setText('kTopDist', top ? DIST_NAMES[top[0]] : '—');
-  setText('kTopDistSub', top ? top[1]+' locations' : '');
-  const totalCE = filtered.reduce((s,a)=>s+a.ce12,0);
-  setText('kCE', totalCE.toLocaleString());
-}
-
-function setText(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
-
-function renderDistBars(){
-  const byDist = new Map();
-  for(const a of filtered) byDist.set(a.di,(byDist.get(a.di)||0)+1);
-  const sorted = [...byDist.entries()].sort((a,b)=>b[1]-a[1]);
-  const max = sorted[0] ? sorted[0][1] : 1;
-  document.getElementById('distBars').innerHTML = sorted.map(([di,cnt])=>{
-    const pct = Math.round(cnt/max*100);
-    const col = DIST_COLORS[di] || '#888';
-    const active = distFilter===di;
-    return '<div class="dist-bar'+(active?' dist-active':'')+'" data-di="'+di+'">'
-      +'<span class="dist-name">'+DIST_NAMES[di]+'</span>'
-      +'<div class="dist-track"><div class="dist-fill" style="width:'+pct+'%;background:'+col+'"><span>'+cnt+'</span></div></div>'
-      +'</div>';
+function renderDistBars(data){
+  const byDist=new Map();
+  DISTS.forEach((d,i)=>byDist.set(i,{gap:0,ok:0}));
+  data.forEach(r=>{const o=byDist.get(r.d);if(r.g)o.gap++;else o.ok++;});
+  const arr=[...byDist.entries()].map(([i,o])=>({i,gap:o.gap,ok:o.ok,tot:o.gap+o.ok})).filter(x=>x.tot>0).sort((a,b)=>b.gap-a.gap||b.tot-a.tot);
+  const max=Math.max(...arr.map(x=>x.tot),1);
+  document.getElementById('distBars').innerHTML=arr.map(x=>{
+    const gapPct=Math.round(x.gap/max*100), okPct=Math.round(x.ok/max*100);
+    const active=distF===String(x.i);
+    return `<div class="dist-bar${active?' active':''}" onclick="setDistFilterFromChart(${x.i})">
+      <span class="dist-name">${DISTS[x.i]}</span>
+      <div class="dist-track">
+        <div class="dist-seg-gap" style="width:${gapPct}%"></div>
+        <div class="dist-seg-ok" style="width:${okPct}%"></div>
+      </div>
+      <span class="dist-count"><span class="gapn">${x.gap}</span> / ${x.tot}</span>
+    </div>`;
   }).join('');
-  document.querySelectorAll('.dist-bar').forEach(el=>{
-    el.addEventListener('click',()=>{ setDistFilter(+el.dataset.di); });
+}
+
+function renderDonut(data){
+  const tot=data.length, gaps=data.filter(r=>r.g).length, ok=tot-gaps;
+  const r=35,cx=50,cy=50,circ=2*Math.PI*r;
+  const gd=tot?(gaps/tot)*circ:0;
+  document.getElementById('donutSvg').innerHTML=`
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#edf0f7" stroke-width="14"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#b42318" stroke-width="14" stroke-dasharray="${gd} ${circ}" stroke-dashoffset="${circ*.25}" stroke-linecap="round"/>
+    <text x="${cx}" y="${cy-4}" text-anchor="middle" fill="#0d1b3e" font-size="20" font-weight="800">${tot?Math.round(gaps/tot*100):0}%</text>
+    <text x="${cx}" y="${cy+12}" text-anchor="middle" fill="#9aa4b8" font-size="8">gap rate</text>`;
+  document.getElementById('donutLegend').innerHTML=`
+    <div class="dl-row"><div class="dl-dot" style="background:#b42318"></div><div class="dl-label">Gap Accounts</div><div class="dl-val">${gaps.toLocaleString()}</div></div>
+    <div class="dl-row"><div class="dl-dot" style="background:#dde6f3"></div><div class="dl-label">Active Accounts</div><div class="dl-val">${ok.toLocaleString()}</div></div>`;
+}
+
+function sortView(){
+  view.sort((a,b)=>{
+    let av,bv;
+    if(sk==='a')      {av='#'+a.st;bv='#'+b.st;}
+    else if(sk==='c') {av=a.c;bv=b.c;}
+    else if(sk==='d') {av=DISTS[a.d];bv=DISTS[b.d];}
+    else if(sk==='g') {av=a.g;bv=b.g;}
+    else if(sk==='ce'){av=a.ce;bv=b.ce;}
+    else if(sk==='p') {av=a.p;bv=b.p;}
+    else if(sk==='fb'){av=a.fb||'';bv=b.fb||'';}
+    else{av=a.g;bv=b.g;}
+    return av<bv?-sd:av>bv?sd:0;
   });
 }
 
-function renderStats(){
-  const nDists = new Set(filtered.map(a=>a.di)).size;
-  const states = [...new Set(filtered.map(a=>a.st))].join(', ');
-  const totalCE = filtered.reduce((s,a)=>s+a.ce12,0);
-  document.getElementById('statsPanel').innerHTML =
-    row('Not Yet Purchased', filtered.length+' locations') +
-    row('Distributors', nDists) +
-    row('Combined 12M CE', totalCE.toLocaleString()+' CE') +
-    row('State', states||'Iowa') +
-    row('Data as of', '5/29/2026');
+function setSort(k){
+  if(sk===k)sd*=-1;else{sk=k;sd=(k==='g'||k==='ce')?-1:1;}
+  document.querySelectorAll('th').forEach(t=>t.classList.remove('sorted'));
+  const th=document.getElementById('th-'+k);
+  if(th){th.classList.add('sorted');th.querySelector('.sa').textContent=sd===-1?'↓':'↑';}
+  pg=0;sortView();renderTable();
 }
-function row(l,v){ return '<div class="stat-row"><span class="stat-label">'+l+'</span><span class="stat-val">'+v+'</span></div>'; }
 
 function hl(txt,q){
-  if(!q) return txt;
-  const i = txt.toLowerCase().indexOf(q.toLowerCase());
-  if(i<0) return txt;
-  return txt.slice(0,i)+'<em class="hl">'+txt.slice(i,i+q.length)+'</em>'+txt.slice(i+q.length);
+  if(!q||!txt)return txt||'';
+  return txt.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em class="hl">$1</em>');
 }
 
-const isMobile = ()=>window.innerWidth<=768;
+// TOOLTIP
+const tt=document.getElementById('tt');
+const TT_W=230, MARGIN=12;
+function showTip(e, idx){
+  const r=ROWS[idx]; if(!r) return;
+  document.getElementById('tt-title').textContent='Casey #'+r.st;
+  document.getElementById('tt-sub').textContent=r.c+', '+r.s+' · '+DISTS[r.d];
+  const repHtml = r.rep
+    ? `<div class="tt-row"><span class="tt-key">Distributor Rep</span><span class="tt-val tt-rep">${r.rep}</span></div>`
+    : `<div class="tt-row"><span class="tt-key">Distributor Rep</span><span class="tt-val" style="color:#c8d0df">Unassigned</span></div>`;
+  document.getElementById('tt-body').innerHTML = repHtml +
+    `<div class="tt-row"><span class="tt-key">Status</span><span class="tt-val" style="color:${r.g?'#b42318':'#1565a8'}">${r.g?'GAP':'Active'}</span></div>` +
+    `<div class="tt-row"><span class="tt-key">2M Case Equivs</span><span class="tt-val">${r.ce.toFixed(1)}</span></div>` +
+    `<div class="tt-row"><span class="tt-key">Purchases</span><span class="tt-val">${r.p}</span></div>` +
+    `<div class="tt-row"><span class="tt-key">First Buy</span><span class="tt-val">${r.fb||'—'}</span></div>`;
+  posTip(e);
+  tt.classList.add('show');
+}
+function posTip(e){
+  const vw=window.innerWidth, vh=window.innerHeight;
+  const h=tt.offsetHeight||220;
+  let left=e.clientX+16, top=e.clientY-16;
+  if(left+TT_W+MARGIN>vw) left=e.clientX-TT_W-16;
+  if(left<MARGIN) left=MARGIN;
+  if(top+h+MARGIN>vh) top=vh-h-MARGIN;
+  if(top<MARGIN) top=MARGIN;
+  tt.style.left=left+'px';
+  tt.style.top=top+'px';
+}
+function hideTip(){ tt.classList.remove('show'); }
+document.addEventListener('mousemove', e => { if(tt.classList.contains('show')) posTip(e); });
 
 function renderTable(){
-  const start = page*PAGE_SIZE;
-  const slice = filtered.slice(start,start+PAGE_SIZE);
-  const q = searchQ;
-  const tb = document.getElementById('tableBody');
-  if(isMobile()){
-    tb.innerHTML = slice.map(a=>{
-      const prox = a.proxMi<9000 ? ' · '+a.proxMi.toFixed(0)+' mi' : '';
-      return '<tr><td><div class="mob-row">'
-        +'<div><div class="mob-name">Casey #'+a.store+'</div>'
-        +'<div class="mob-sub">'+hl(a.ci,q)+', '+a.st+prox+' · '+DIST_NAMES[a.di]+'</div></div>'
-        +'<div class="mob-tag">0<br>SALES</div>'
-        +'</div></td></tr>';
-    }).join('');
-  } else {
-    tb.innerHTML = slice.map(a=>{
-      const prox = a.proxMi<9000 ? '<span class="prox-mi">'+a.proxMi.toFixed(0)+' mi</span>' : '';
-      const col  = DIST_COLORS[a.di] || '#888';
-      const ceDisp = a.ce12 > 0 ? '<span class="ce-num">'+a.ce12+'</span>' : '<span style="color:#ccc">—</span>';
-      return '<tr>'
-        +'<td><div class="acct-nm">Casey #'+hl(a.store,q)+'</div><div class="addr-sm">'+a.addr+'</div></td>'
-        +'<td>'+hl(a.ci,q)+', <span class="state-badge">'+a.st+'</span>'+prox+'</td>'
-        +'<td><span class="dist-badge" style="background:'+col+'">'+DIST_NAMES[a.di]+'</span></td>'
-        +'<td><span class="not-tag">0 sales</span></td>'
-        +'<td>'+ceDisp+'</td>'
-        +'</tr>';
-    }).join('');
-  }
-  document.querySelectorAll('th').forEach(th=>th.classList.remove('sorted'));
-  const colMap={name:0,city:1,dist:2,vol:3,ce12:4};
-  if(colMap[sortKey]!==undefined){
-    const ths=document.querySelectorAll('#mainTable th');
-    if(ths[colMap[sortKey]]) ths[colMap[sortKey]].classList.add('sorted');
-  }
-  setText('countBadge', filtered.length.toLocaleString()+' accounts');
-  setText('pageInfo', 'Showing '+(start+1)+'–'+Math.min(start+PAGE_SIZE,filtered.length)+' of '+filtered.length);
-  renderPagination();
+  const q=(document.getElementById('q').value||'').trim().toLowerCase();
+  const start=pg*PS, slice=view.slice(start,start+PS);
+  document.getElementById('tbody').innerHTML=slice.map(r=>{
+    const ceDisp=r.ce>0?`<span class="ce-num">${r.ce.toFixed(1)}</span>`:`<span class="ce-zero">—</span>`;
+    const statusHtml=r.g
+      ? `<span class="status-pill status-gap"><span class="status-dot" style="background:#b42318"></span>GAP</span>`
+      : `<span class="status-pill status-ok"><span class="status-dot" style="background:#1565a8"></span>Active</span>`;
+    return `<tr class="${r.g?'gap-row':'ok-row'}">
+      <td class="acct-cell" onmouseenter="showTip(event,${ROWS.indexOf(r)})" onmouseleave="hideTip()"><div class="acct-name">Casey #${hl(r.st,q)}</div><div class="addr-sm">${r.addr}</div></td>
+      <td>${hl(r.c,q)}, ${r.s}</td>
+      <td><span class="dist-chip" title="${DISTS[r.d]}">${DISTS[r.d]}</span></td>
+      <td>${statusHtml}</td>
+      <td>${ceDisp}</td>
+      <td><span class="purch-num">${r.p}</span></td>
+      <td><span class="fb-date">${fmtDate(r.fb)}</span></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('cbadge').textContent=view.length.toLocaleString()+' accounts';
+  const total=Math.ceil(view.length/PS);
+  document.getElementById('paginfo').textContent=`Showing ${(start+1).toLocaleString()}–${Math.min(start+PS,view.length).toLocaleString()} of ${view.length.toLocaleString()}`;
+  renderPag(total);
 }
 
-function renderPagination(){
-  const total = Math.ceil(filtered.length/PAGE_SIZE);
-  const el = document.getElementById('pageBtns');
+function renderPag(total){
+  const el=document.getElementById('pagbtns');
   if(total<=1){el.innerHTML='';return;}
-  let html = '<button class="page-btn" onclick="goPage('+(page-1)+')" '+(page===0?'disabled':'')+'>&#8249;</button>';
+  let h=`<button class="pb" onclick="gp(${pg-1})" ${pg===0?'disabled':''}>‹ Prev</button>`;
   for(let i=0;i<total;i++){
-    if(total>8 && Math.abs(i-page)>2 && i!==0 && i!==total-1){
-      if(i===1||i===total-2) html+='<span style="padding:3px 4px;font-size:11px;color:#aaa">…</span>';
+    if(total>10&&Math.abs(i-pg)>2&&i!==0&&i!==total-1){
+      if(i===1||i===total-2)h+='<span style="padding:2px 4px;color:#b0bac8">…</span>';
       continue;
     }
-    html+='<button class="page-btn'+(i===page?' active':'')+'" onclick="goPage('+i+')">'+(i+1)+'</button>';
+    h+=`<button class="pb${i===pg?' active':''}" onclick="gp(${i})">${i+1}</button>`;
   }
-  html+='<button class="page-btn" onclick="goPage('+(page+1)+')" '+(page===total-1?'disabled':'')+'>&#8250;</button>';
-  el.innerHTML=html;
+  h+=`<button class="pb" onclick="gp(${pg+1})" ${pg>=total-1?'disabled':''}>Next ›</button>`;
+  el.innerHTML=h;
 }
+function gp(p){const t=Math.ceil(view.length/PS);if(p<0||p>=t)return;pg=p;renderTable();window.scrollTo(0,0);}
 
-function goPage(p){
-  const total=Math.ceil(filtered.length/PAGE_SIZE);
-  if(p<0||p>=total) return;
-  page=p; renderTable(); window.scrollTo(0,0);
-}
-
-function setDistFilter(di){
-  distFilter = (distFilter===di) ? -1 : di;
-  page=0; applyFilters();
-}
-function setSearch(v){ searchQ=v; page=0; applyFilters(); }
-function setSort(k){
-  if(sortKey===k) sortDir*=-1;
-  else{ sortKey=k; sortDir=(k==='ce12'?-1:1); }
-  page=0; sortFiltered(); renderTable();
-}
-function resetAll(){
-  distFilter=-1; searchQ=''; sortKey='name'; sortDir=1; page=0;
-  document.getElementById('searchBox').value='';
-  setDropLabel('ssDist','All distributors');
-  document.querySelectorAll('#distList .ss-opt').forEach(o=>o.classList.remove('selected'));
-  applyFilters();
-}
-
-function setDropLabel(id,label){ const el=document.getElementById(id); if(el) el.value=label; }
-
-function buildDistDD(){
-  const list = document.getElementById('distList');
-  const opts = [['','All distributors'], ...DIST_NAMES.map((n,i)=>[String(i),n])];
-  list.innerHTML = opts.map(([val,label])=>
-    '<div class="ss-opt" data-val="'+val+'">'+label+'</div>'
-  ).join('');
-  list.querySelectorAll('.ss-opt').forEach(el=>{
-    el.addEventListener('click',()=>{
-      setDropLabel('ssDist', el.textContent);
-      distFilter = el.dataset.val==='' ? -1 : +el.dataset.val;
-      document.querySelectorAll('#distList .ss-opt').forEach(o=>o.classList.remove('selected'));
-      el.classList.add('selected');
-      document.getElementById('distDrop').style.display='none';
-      page=0; applyFilters();
-    });
-  });
-}
-
-function buildSortDD(){
-  const opts=[
-    {label:'Store # A→Z',k:'name',d:1},{label:'City A→Z',k:'city',d:1},
-    {label:'Distributor A→Z',k:'dist',d:1},
-    {label:'12M CE ▾',k:'ce12',d:-1},
-    {label:'Proximity (nearest)',k:'prox',d:1}
-  ];
-  const list = document.getElementById('sortList');
-  list.innerHTML = opts.map(o=>'<div class="ss-opt" data-k="'+o.k+'" data-d="'+o.d+'">'+o.label+'</div>').join('');
-  list.querySelectorAll('.ss-opt').forEach(el=>{
-    el.addEventListener('click',()=>{
-      sortKey=el.dataset.k; sortDir=+el.dataset.d;
-      setDropLabel('ssSort','Sort: '+el.textContent);
-      document.getElementById('sortDrop').style.display='none';
-      page=0; sortFiltered(); renderTable();
-    });
-  });
-}
-
-function toggleDrop(dropId){
-  const drop = document.getElementById(dropId);
-  const isOpen = drop.style.display==='flex';
-  document.querySelectorAll('.ss-dropdown').forEach(d=>d.style.display='none');
-  if(!isOpen) drop.style.display='flex';
-}
-function filterDistList(q){
-  document.querySelectorAll('#distList .ss-opt').forEach(el=>{
-    el.style.display = el.textContent.toLowerCase().includes(q.toLowerCase()) ? '' : 'none';
-  });
-}
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.ss-wrap')) document.querySelectorAll('.ss-dropdown').forEach(d=>d.style.display='none');
-});
-
-(function initLocation(){
-  function onCoords(lat,lon){
-    viewerLat=lat; viewerLon=lon;
-    buildAccts(); sortKey='prox'; sortDir=1; page=0; applyFilters();
-  }
-  function tryIP(){
-    fetch('https://ipapi.co/json/').then(r=>r.json())
-      .then(d=>{ if(d.latitude&&d.longitude) onCoords(+d.latitude,+d.longitude); })
-      .catch(()=>fetch('https://ipwho.is/').then(r=>r.json())
-        .then(d=>{ if(d.latitude&&d.longitude) onCoords(+d.latitude,+d.longitude); })
-        .catch(()=>{}));
-  }
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(
-      p=>onCoords(p.coords.latitude,p.coords.longitude),
-      tryIP, {timeout:5000,maximumAge:600000,enableHighAccuracy:false}
-    );
-  } else { tryIP(); }
-})();
-
-buildAccts();
-buildDistDD();
-buildSortDD();
 applyFilters();
-
 </script>
 </body>
 </html>
